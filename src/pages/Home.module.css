@@ -1,0 +1,149 @@
+.main {
+  padding-top: 140px; /* Pushes content below the fixed navbar */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.eyebrow {
+  color: #22d3ee;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: bold;
+}
+
+.heading {
+  font-size: 4.5rem;
+  color: white;
+  line-height: 1.1;
+  margin: 20px 0;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.heading em {
+  font-style: italic;
+  background: linear-gradient(to right, #22d3ee, #c084fc);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.subheading {
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* --- The Constrained, Premium Grid --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Forces exactly 2 sleek columns */
+  gap: 32px;
+  width: 100%;
+  max-width: 850px; /* SHRINKS the maximum width so cards stay the ideal size */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* Stacks them nicely on mobile */
+    max-width: 450px;
+  }
+}
+
+/* --- The Premium "Ideal Size" Glass Cards --- */
+.card {
+  background: rgba(15, 23, 42, 0.4); /* Slightly darker glass for readability */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Crisp outer edge */
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border-radius: 24px; /* Slightly sharper corners look more high-end */
+  padding: 32px; /* Tighter padding so it isn't so huge */
+  min-height: 360px; /* Perfect golden-ratio height */
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Base shadow */
+}
+
+/* Premium Hover Dynamics */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(34, 211, 238, 0.4); /* Cyan edge glow */
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5), 
+    inset 0 0 30px rgba(34, 211, 238, 0.05); /* Inner cinematic glow */
+}
+
+.cardBadge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 14px;
+  border-radius: 50px;
+  align-self: flex-start;
+  margin-bottom: 24px;
+}
+
+.iconWrap {
+  margin-bottom: 20px;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .iconWrap {
+  transform: scale(1.1); /* The icon subtly grows on hover */
+}
+
+.cardTitle {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.cardSub {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-weight: 400;
+  margin-bottom: 30px;
+  flex-grow: 1;
+}
+
+.cardCta {
+  color: white; /* Changes from accent color to white for a cleaner look */
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.card:hover .cardCta {
+  color: var(--accent);
+  opacity: 1;
+  gap: 16px; /* The arrow slides to the right smoothly */
+}
