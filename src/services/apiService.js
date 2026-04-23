@@ -20,7 +20,7 @@ export const fetchSiteData = async () => {
 
 // Play Zone API Client
 const pzApi = axios.create({
-  baseURL: 'http://localhost:5001/api/playzone',
+  baseURL: `${import.meta.env.VITE_API_URL}/playzone`,
   headers: {
     'Content-Type': 'application/json',
   },

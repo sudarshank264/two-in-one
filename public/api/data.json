@@ -2,10 +2,10 @@
   "homeCards": [
     {
       "id": "doctor",
-      "title": "Physio Care",
+      "title": "Dr. Preeti Choudhary (Physiotherapist)",
       "icon": "FaStethoscope",
       "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-      "description": "Expert physiotherapy services for a pain-free life and improved mobility.",
+      "description": "Dr. Preeti Choudhary is a Physiotherapist in Crossings Republik, Ghaziabad and has an experience of 13 years in this field. ",
       "link": "/doctor"
     },
     {

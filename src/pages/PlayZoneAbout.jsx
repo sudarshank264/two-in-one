@@ -1,25 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import ModernNavbar from '../components/ModernNavbar';
 import Footer from '../components/Footer';
-import { playZoneData } from '../data/playZoneData';
+import api from '../admin/utils/api';
 import '../styles/playzone.css';
 
 const PlayZoneAbout = () => {
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.classList.add('theme-playzone');
+    fetchData();
     return () => document.body.classList.remove('theme-playzone');
   }, []);
 
-  const d = playZoneData;
+  const fetchData = async () => {
+    try {
+      const res = await api.get('/playzone/about');
+      setSettings(res.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
+  if (!settings) return <div>Failed to load data.</div>;
+
+  const d = settings;
+  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
 
   return (
     <div style={{ background: '#fff9e6', minHeight: '100vh' }}>
-      <ModernNavbar brandName="Lets Play Zone" basePath="/play-zone" />
+      <ModernNavbar brandName={d.aboutTitle || "Lets Play Zone"} basePath="/play-zone" />
       
       <section className="page-hero" style={{ height: '300px' }}>
-        <img src={d.about.image} alt="About PlayZone" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
+        {d.aboutImage && <img src={baseUrl + d.aboutImage} alt="About PlayZone" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
         <h1 className="page-hero-title">About Lets Play Zone</h1>
       </section>
 
@@ -31,12 +50,12 @@ const PlayZoneAbout = () => {
           transition={{ duration: 0.6 }}
           style={{ background: 'white', padding: '40px', borderRadius: '24px', boxShadow: '0 10px 30px rgba(245, 158, 11, 0.15)', textAlign: 'center' }}
         >
-          <h2 className="pz-section-title">{d.about.title}</h2>
-          <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#444' }}>{d.about.text}</p>
+          <h2 className="pz-section-title">{d.aboutTitle}</h2>
+          <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#444' }}>{d.aboutText || d.text}</p>
         </motion.div>
       </section>
 
-      <Footer brandName="Lets Play Zone" description={d.about.text} address={d.contact.address} />
+      <Footer brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };

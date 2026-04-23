@@ -1,19 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ModernNavbar from '../components/ModernNavbar';
 import Footer from '../components/Footer';
-import { playZoneData } from '../data/playZoneData';
+import api from '../admin/utils/api';
 import '../styles/playzone.css';
 
 const PlayZoneActivities = () => {
+  const [settings, setSettings] = useState(null);
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.classList.add('theme-playzone');
+    fetchData();
     return () => document.body.classList.remove('theme-playzone');
   }, []);
 
-  const d = playZoneData;
+  const fetchData = async () => {
+    try {
+      const [settingsRes, actRes] = await Promise.all([
+        api.get('/playzone/about'),
+        api.get('/playzone/activities')
+      ]);
+      setSettings(settingsRes.data);
+      setActivities(actRes.data || []);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fadeUp = {
     hidden: { opacity: 0, y: 50 },
@@ -24,12 +42,18 @@ const PlayZoneActivities = () => {
     visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
   };
 
+  if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
+  if (!settings) return <div>Failed to load data.</div>;
+
+  const d = settings;
+  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+
   return (
     <div style={{ background: '#fff9e6', minHeight: '100vh' }}>
-      <ModernNavbar brandName="Lets Play Zone" basePath="/play-zone" />
+      <ModernNavbar brandName={d.aboutTitle || "Lets Play Zone"} basePath="/play-zone" />
       
       <section className="page-hero" style={{ height: '300px' }}>
-        <img src={d.hero.image} alt="Activities Hero" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
+        {d.heroImage && <img src={baseUrl + d.heroImage} alt="Activities Hero" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
         <h1 className="page-hero-title">All Activities</h1>
       </section>
 
@@ -39,22 +63,22 @@ const PlayZoneActivities = () => {
         </p>
         
         <motion.div className="pz-activities-grid" initial="hidden" animate="visible" variants={stagger}>
-          {d.activities.map((act) => (
-            <motion.div key={act.id} className="pz-activity-card" variants={fadeUp}>
+          {activities.map((act) => (
+            <motion.div key={act._id} className="pz-activity-card" variants={fadeUp}>
               <div className="pz-activity-img-wrap">
-                <img src={act.image} alt={act.title} className="pz-activity-img" />
+                <img src={baseUrl + act.image} alt={act.title} className="pz-activity-img" />
               </div>
               <div className="pz-activity-content">
                 <h3>{act.title}</h3>
-                <p>{act.description}</p>
-                <Link to={`/play-zone/activities/${act.id}`} className="card-action">View Activity</Link>
+                <p>{act.description.substring(0, 100)}...</p>
+                <Link to={`/play-zone/activities/${act._id}`} className="card-action">View Activity</Link>
               </div>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
-      <Footer brandName="Lets Play Zone" description={d.about.text} address={d.contact.address} />
+      <Footer brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };

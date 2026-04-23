@@ -124,7 +124,7 @@ export default function Home() {
             badge="Healthcare"
             accent="var(--clr-accent1)"
             accentLight="var(--clr-accent1-l)"
-            onClick={() => window.open("http://localhost:5173", "_blank")}
+            onClick={() => navigate("/doctor")}
           />
           <PortalCard
             icon={<PlayIcon />}
@@ -133,7 +133,7 @@ export default function Home() {
             badge="Entertainment"
             accent="var(--clr-accent2)"
             accentLight="var(--clr-accent2-l)"
-            onClick={() => navigate('/playzone')}
+            onClick={() => navigate('/play-zone')}
           />
         </section>
       </main>

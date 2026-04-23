@@ -1,20 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ModernNavbar from '../components/ModernNavbar';
 import Footer from '../components/Footer';
-import { doctorData } from '../data/doctorData';
+import api from '../admin/utils/api';
 import { FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
 
 const DoctorServiceDetail = () => {
   const { id } = useParams();
-  const d = doctorData;
-  const service = d.services.find(s => s.id === id);
+  const [settings, setSettings] = useState(null);
+  const [service, setService] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.classList.add('theme-doctor');
+    fetchData();
     return () => document.body.classList.remove('theme-doctor');
   }, [id]);
+
+  const fetchData = async () => {
+    try {
+      const [settingsRes, serviceRes] = await Promise.all([
+        api.get('/about'),
+        api.get(`/services/${id}`)
+      ]);
+      setSettings(settingsRes.data);
+      setService(serviceRes.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
 
   if (!service) {
     return (
@@ -25,12 +44,15 @@ const DoctorServiceDetail = () => {
     );
   }
 
+  const d = settings || {};
+  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+
   return (
     <div style={{ background: 'var(--background-light)', minHeight: '100vh' }}>
-      <ModernNavbar brandName="Physio Care" basePath="/doctor" />
+      <ModernNavbar brandName={d.aboutTitle || "Physio Care"} basePath="/doctor" />
       
       <section className="page-hero" style={{ height: '400px' }}>
-        <img src={service.image} alt={service.title} className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
+        <img src={baseUrl + service.image} alt={service.title} className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
         <h1 className="page-hero-title">{service.title}</h1>
       </section>
 
@@ -43,18 +65,9 @@ const DoctorServiceDetail = () => {
 
         <div style={{ background: 'white', padding: '50px', borderRadius: '16px', boxShadow: 'var(--shadow)' }}>
           <h2 style={{ marginBottom: '20px', color: 'var(--text-dark)', fontSize: '2rem' }}>Overview</h2>
-          <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#475569', marginBottom: '40px' }}>
-            {service.fullDetail}
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#475569', marginBottom: '40px', whiteSpace: 'pre-line' }}>
+            {service.mainContent}
           </p>
-
-          <h3 style={{ marginBottom: '20px', color: 'var(--text-dark)' }}>Key Features</h3>
-          <ul style={{ listStyle: 'none', padding: 0, marginBottom: '50px' }}>
-            {service.features.map((feat, index) => (
-              <li key={index} style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px', fontSize: '1.1rem', color: '#444' }}>
-                <FaCheckCircle color="var(--primary-color)" /> {feat}
-              </li>
-            ))}
-          </ul>
 
           <div className="text-center">
             <button style={{ padding: '15px 40px', fontSize: '1.1rem', fontWeight: '600', color: 'white', background: 'var(--primary-color)', border: 'none', borderRadius: '8px', cursor: 'pointer', transition: 'background 0.3s' }}>
@@ -64,7 +77,7 @@ const DoctorServiceDetail = () => {
         </div>
       </section>
 
-      <Footer brandName="Physio Care" description={d.about.text} address={d.contact.address} />
+      <Footer brandName={d.aboutTitle || "Physio Care"} description={d.aboutText} address={d.contactAddress} />
     </div>
   );
 };

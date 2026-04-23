@@ -20,7 +20,14 @@ const ModernNavbar = ({ brandName, basePath }) => {
   return (
     <nav className="modern-navbar">
       <div className="container nav-content">
-        <Link to={basePath} className="nav-brand">
+        <Link to={basePath} className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {basePath === '/doctor' && (
+            <img 
+              src="/physio-care-logo.png" 
+              alt="Physio Care Logo" 
+              style={{ height: '40px', objectFit: 'contain' }} 
+            />
+          )}
           {brandName}
         </Link>
         

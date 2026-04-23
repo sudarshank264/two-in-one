@@ -3,6 +3,24 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import ProtectedRoute from '../components/ProtectedRoute';
 
+// Admin Pages
+import AdminLogin from '../admin/pages/Login';
+import AdminDashboard from '../admin/pages/Dashboard';
+import AdminOverview from '../admin/pages/Overview';
+import AdminProtectedRoute from '../admin/components/AdminProtectedRoute';
+
+// Admin Doctor CRUD
+import DoctorSettings from '../admin/pages/DoctorSettings';
+import DoctorBlogs from '../admin/pages/DoctorBlogs';
+import DoctorServicesAdmin from '../admin/pages/DoctorServices';
+import DoctorGalleryAdmin from '../admin/pages/DoctorGallery';
+
+// Admin Play Zone CRUD
+import PlayZoneSettings from '../admin/pages/PlayZoneSettings';
+import PlayZoneActivitiesAdmin from '../admin/pages/PlayZoneActivities';
+import PlayZoneServicesAdmin from '../admin/pages/PlayZoneServices';
+import PlayZoneGalleryAdmin from '../admin/pages/PlayZoneGallery';
+
 // Doctor Pages
 import DoctorPage from '../pages/DoctorPage';
 import DoctorAbout from '../pages/DoctorAbout';
@@ -35,6 +53,26 @@ const AppRoutes = () => {
       <Route path="/play-zone/activities" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneActivities /></ProtectedRoute>} />
       <Route path="/play-zone/activities/:id" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneActivityDetail /></ProtectedRoute>} />
       <Route path="/play-zone/gallery" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneGallery /></ProtectedRoute>} />
+
+      {/* Admin Routes */}
+      <Route path="/admin" element={<AdminLogin />} />
+      <Route path="/admin" element={<AdminProtectedRoute />}>
+        <Route element={<AdminDashboard />}>
+          <Route path="dashboard" element={<AdminOverview />} />
+          
+          {/* Doctor Admin Routes */}
+          <Route path="doctor/settings" element={<DoctorSettings />} />
+          <Route path="doctor/blogs" element={<DoctorBlogs />} />
+          <Route path="doctor/services" element={<DoctorServicesAdmin />} />
+          <Route path="doctor/gallery" element={<DoctorGalleryAdmin />} />
+
+          {/* Play Zone Admin Routes */}
+          <Route path="playzone/settings" element={<PlayZoneSettings />} />
+          <Route path="playzone/activities" element={<PlayZoneActivitiesAdmin />} />
+          <Route path="playzone/services" element={<PlayZoneServicesAdmin />} />
+          <Route path="playzone/gallery" element={<PlayZoneGalleryAdmin />} />
+        </Route>
+      </Route>
     </Routes>
   );
 };

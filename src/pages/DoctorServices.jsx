@@ -1,24 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ModernNavbar from '../components/ModernNavbar';
 import Footer from '../components/Footer';
-import { doctorData } from '../data/doctorData';
+import api from '../admin/utils/api';
 
 const DoctorServices = () => {
+  const [settings, setSettings] = useState(null);
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.classList.add('theme-doctor');
+    fetchData();
     return () => document.body.classList.remove('theme-doctor');
   }, []);
 
-  const d = doctorData;
+  const fetchData = async () => {
+    try {
+      const [settingsRes, servicesRes] = await Promise.all([
+        api.get('/about'),
+        api.get('/services')
+      ]);
+      setSettings(settingsRes.data);
+      setServices(servicesRes.data || []);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
+  if (!settings) return <div>Failed to load data.</div>;
+
+  const d = settings;
+  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
 
   return (
     <div style={{ background: 'var(--background-light)', minHeight: '100vh' }}>
-      <ModernNavbar brandName="Physio Care" basePath="/doctor" />
+      <ModernNavbar brandName={d.aboutTitle || "Physio Care"} basePath="/doctor" />
       
       <section className="page-hero" style={{ height: '300px' }}>
-        <img src={d.hero.image} alt="Services Hero" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
+        {d.heroImage && <img src={baseUrl + d.heroImage} alt="Services Hero" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
         <h1 className="page-hero-title">Our Services</h1>
       </section>
 
@@ -28,14 +52,14 @@ const DoctorServices = () => {
         </p>
         
         <div className="cards-container mx-auto" style={{ margin: '0 auto' }}>
-          {d.services.map((service) => (
-            <Link to={`/doctor/services/${service.id}`} key={service.id} className="card">
+          {services.map((service) => (
+            <Link to={`/doctor/services/${service._id}`} key={service._id} className="card">
               <div className="card-img-wrapper">
-                <img src={service.image} alt={service.title} className="card-img" />
+                <img src={baseUrl + service.image} alt={service.title} className="card-img" />
               </div>
               <div className="card-content">
                 <h3 className="card-title" style={{ marginBottom: '15px' }}>{service.title}</h3>
-                <p className="card-desc">{service.description}</p>
+                <p className="card-desc">{service.shortDescription}</p>
                 <div className="card-action">View Full Detail &rarr;</div>
               </div>
             </Link>
@@ -43,7 +67,7 @@ const DoctorServices = () => {
         </div>
       </section>
 
-      <Footer brandName="Physio Care" description={d.about.text} address={d.contact.address} />
+      <Footer brandName={d.aboutTitle || "Physio Care"} description={d.aboutText} address={d.contactAddress} />
     </div>
   );
 };

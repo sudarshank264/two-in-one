@@ -1,22 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ModernNavbar from '../components/ModernNavbar';
 import Footer from '../components/Footer';
-import { playZoneData } from '../data/playZoneData';
-import { FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
+import api from '../admin/utils/api';
+import { FaArrowLeft } from 'react-icons/fa';
 import '../styles/playzone.css';
 
 const PlayZoneActivityDetail = () => {
   const { id } = useParams();
-  const d = playZoneData;
-  const activity = d.activities.find(a => a.id === id);
+  const [settings, setSettings] = useState(null);
+  const [activity, setActivity] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.classList.add('theme-playzone');
+    fetchData();
     return () => document.body.classList.remove('theme-playzone');
   }, [id]);
+
+  const fetchData = async () => {
+    try {
+      const [settingsRes, activityRes] = await Promise.all([
+        api.get('/playzone/about'),
+        api.get(`/playzone/activities/${id}`)
+      ]);
+      setSettings(settingsRes.data);
+      setActivity(activityRes.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
 
   if (!activity) {
     return (
@@ -27,12 +46,15 @@ const PlayZoneActivityDetail = () => {
     );
   }
 
+  const d = settings || {};
+  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+
   return (
     <div style={{ background: '#fff9e6', minHeight: '100vh' }}>
-      <ModernNavbar brandName="Lets Play Zone" basePath="/play-zone" />
+      <ModernNavbar brandName={d.aboutTitle || "Lets Play Zone"} basePath="/play-zone" />
       
       <section className="page-hero" style={{ height: '400px' }}>
-        <img src={activity.image} alt={activity.title} className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
+        <img src={baseUrl + activity.image} alt={activity.title} className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
         <motion.h1 
           className="page-hero-title"
           initial={{ y: 30, opacity: 0 }}
@@ -57,27 +79,9 @@ const PlayZoneActivityDetail = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h2 style={{ marginBottom: '30px', color: 'var(--text-dark)', fontSize: '2.5rem', fontWeight: '800' }}>More Details!</h2>
-          <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#555', marginBottom: '40px' }}>
-            {activity.fullDetail}
+          <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#555', marginBottom: '40px', whiteSpace: 'pre-line' }}>
+            {activity.description}
           </p>
-
-          <h3 style={{ marginBottom: '25px', color: 'var(--text-dark)', fontSize: '1.8rem' }}>Awesome Features</h3>
-          <ul style={{ listStyle: 'none', padding: 0, marginBottom: '50px' }}>
-            {activity.features.map((feat, index) => (
-              <motion.li 
-                key={index} 
-                style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px', fontSize: '1.2rem', color: '#444', fontWeight: '500' }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 + (index * 0.1) }}
-              >
-                <div style={{ background: '#fef3c7', padding: '10px', borderRadius: '50%', display: 'flex' }}>
-                  <FaCheckCircle color="var(--primary-color)" size="1.5rem" />
-                </div>
-                {feat}
-              </motion.li>
-            ))}
-          </ul>
 
           <div className="text-center">
             <motion.button 
@@ -91,7 +95,7 @@ const PlayZoneActivityDetail = () => {
         </motion.div>
       </section>
 
-      <Footer brandName="Lets Play Zone" description={d.about.text} address={d.contact.address} />
+      <Footer brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };
