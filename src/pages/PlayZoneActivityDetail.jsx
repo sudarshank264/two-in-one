@@ -47,7 +47,7 @@ const PlayZoneActivityDetail = () => {
   }
 
   const d = settings || {};
-  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
 
   return (
     <div style={{ background: '#fff9e6', minHeight: '100vh' }}>

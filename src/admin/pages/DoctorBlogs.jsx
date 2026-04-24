@@ -97,7 +97,7 @@ const DoctorBlogs = () => {
             {blogs.map(item => (
               <tr key={item._id} style={{ borderBottom: '1px solid #e5e7eb' }}>
                 <td style={{ padding: '1rem' }}>
-                  <img src={import.meta.env.VITE_API_URL.replace('/api', '') + item.image} alt={item.title} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }} />
+                  <img src={(import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '') + item.image} alt={item.title} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }} />
                 </td>
                 <td style={{ padding: '1rem', fontWeight: 'bold' }}>{item.title}</td>
                 <td style={{ padding: '1rem', color: '#6b7280' }}>{item.shortDescription.substring(0, 50)}...</td>
@@ -120,7 +120,7 @@ const DoctorBlogs = () => {
               <textarea className="admin-input" placeholder="Short Description" rows="2" value={formData.shortDescription} onChange={e => setFormData({ ...formData, shortDescription: e.target.value })} required />
               <textarea className="admin-input" placeholder="Main Content" rows="5" value={formData.mainContent} onChange={e => setFormData({ ...formData, mainContent: e.target.value })} required />
               <input type="file" className="admin-input" accept="image/*" onChange={e => setImage(e.target.files[0])} required={!editingId} />
-              
+
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                 <button type="submit" className="admin-btn">Save</button>
                 <button type="button" className="admin-btn" style={{ backgroundColor: '#9ca3af' }} onClick={() => setIsModalOpen(false)}>Cancel</button>

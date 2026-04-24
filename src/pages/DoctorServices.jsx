@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaArrowRight, FaHeartbeat, FaBrain, FaStethoscope } from 'react-icons/fa';
 import ModernNavbar from '../components/ModernNavbar';
 import Footer from '../components/Footer';
 import api from '../admin/utils/api';
+import '../styles/doctor.css';
 
 const DoctorServices = () => {
   const [settings, setSettings] = useState(null);
@@ -10,7 +12,6 @@ const DoctorServices = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     document.body.classList.add('theme-doctor');
     fetchData();
     return () => document.body.classList.remove('theme-doctor');
@@ -26,44 +27,47 @@ const DoctorServices = () => {
       setServices(servicesRes.data || []);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setSettings({});
     } finally {
       setLoading(false);
     }
   };
 
-  if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
-  if (!settings) return <div>Failed to load data.</div>;
+  if (loading) return <div style={{textAlign: 'center', padding: '4rem', color: '#22577A'}}>Loading...</div>;
 
-  const d = settings;
-  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+  const d = settings || {};
+  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
 
   return (
-    <div style={{ background: 'var(--background-light)', minHeight: '100vh' }}>
+    <div>
       <ModernNavbar brandName={d.aboutTitle || "Physio Care"} basePath="/doctor" />
       
-      <section className="page-hero" style={{ height: '300px' }}>
-        {d.heroImage && <img src={baseUrl + d.heroImage} alt="Services Hero" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
-        <h1 className="page-hero-title">Our Services</h1>
-      </section>
+      <div className="doc-hero" style={{ minHeight: '40vh', backgroundImage: `url(${d.heroImage ? baseUrl + d.heroImage : 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop'})` }}>
+        <div className="doc-hero-overlay" style={{ background: 'linear-gradient(90deg, rgba(34, 87, 122, 0.9) 0%, rgba(56, 163, 165, 0.8) 100%)' }}></div>
+        <div className="container doc-hero-content" style={{ textAlign: 'center', paddingTop: '4rem' }}>
+          <h1 className="doc-hero-title">Our Services</h1>
+          <p className="doc-hero-subtitle">Comprehensive physiotherapy services designed to relieve pain and restore mobility.</p>
+        </div>
+      </div>
 
-      <section className="container content-section">
-        <p className="text-center" style={{ marginBottom: '50px', color: '#64748b', fontSize: '1.2rem' }}>
-          Explore our wide range of professional physiotherapy programs designed to help you recover faster.
-        </p>
-        
-        <div className="cards-container mx-auto" style={{ margin: '0 auto' }}>
-          {services.map((service) => (
-            <Link to={`/doctor/services/${service._id}`} key={service._id} className="card">
-              <div className="card-img-wrapper">
-                <img src={baseUrl + service.image} alt={service.title} className="card-img" />
+      <section className="doc-services-section">
+        <h2 className="section-title">Explore Our Physiotherapy Services</h2>
+        <div className="doc-services-grid">
+          {services?.map((service, index) => {
+            const icons = [<FaHeartbeat />, <FaBrain />, <FaStethoscope />, <FaHeartbeat />];
+            return (
+              <div key={service._id} className="doc-service-card">
+                <div className="doc-service-icon">
+                  {icons[index % icons.length]}
+                </div>
+                <h4>{service.title}</h4>
+                <p>{service.shortDescription}</p>
+                <Link to={`/doctor/services/${service._id}`} className="doc-service-link">
+                  Read More <FaArrowRight size={12} />
+                </Link>
               </div>
-              <div className="card-content">
-                <h3 className="card-title" style={{ marginBottom: '15px' }}>{service.title}</h3>
-                <p className="card-desc">{service.shortDescription}</p>
-                <div className="card-action">View Full Detail &rarr;</div>
-              </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
       </section>
 

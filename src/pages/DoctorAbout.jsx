@@ -25,18 +25,18 @@ const DoctorAbout = () => {
     }
   };
 
-  if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
+  if (loading) return <div style={{ textAlign: 'center', padding: '4rem' }}>Loading...</div>;
   if (!settings) return <div>Failed to load data.</div>;
 
   const d = settings;
-  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
 
   return (
     <div style={{ background: 'var(--background-light)', minHeight: '100vh' }}>
       <ModernNavbar brandName={d.aboutTitle || "Physio Care"} basePath="/doctor" />
-      
+
       <section className="page-hero" style={{ height: '300px' }}>
-        {d.aboutImage && <img src={baseUrl + d.aboutImage} alt="About Hero" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
+        {d.aboutImage && <img src={baseUrl + d.aboutImage} alt="About Hero" className="page-hero-img" style={{ filter: 'brightness(0.6)' }} />}
         <h1 className="page-hero-title">About Us</h1>
       </section>
 

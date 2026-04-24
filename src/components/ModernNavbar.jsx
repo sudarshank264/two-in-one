@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import BookingModal from './BookingModal';
 import './ModernNavbar.css';
 
 const ModernNavbar = ({ brandName, basePath }) => {
@@ -14,32 +15,39 @@ const ModernNavbar = ({ brandName, basePath }) => {
     { title: 'Home', path: `${basePath}` },
     { title: 'About', path: `${basePath}/about` },
     { title: basePath === '/doctor' ? 'Services' : 'Activities', path: basePath === '/doctor' ? `${basePath}/services` : `${basePath}/activities` },
-    { title: 'Gallery', path: `${basePath}/gallery` }
+    { title: 'Gallery', path: `${basePath}/gallery` },
+    ...(basePath === '/doctor' ? [{ title: 'Blogs', path: `${basePath}/blogs` }] : [])
   ];
 
   return (
     <nav className="modern-navbar">
       <div className="container nav-content">
-        <Link to={basePath} className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {basePath === '/doctor' && (
-            <img 
-              src="/physio-care-logo.png" 
-              alt="Physio Care Logo" 
-              style={{ height: '40px', objectFit: 'contain' }} 
-            />
+        <Link to={basePath} className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          {basePath === '/doctor' ? (
+            <>
+              <img
+                src="/physio-care-logo.png"
+                alt="Physio Care Logo"
+                style={{ height: '50px', objectFit: 'contain' }}
+              />
+              <span style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--doc-primary-dark)', maxWidth: '250px', lineHeight: '1.2', whiteSpace: 'normal' }}>
+
+                Dr. Preeti Choudhary (Physiotherapist)
+              </span>
+            </>
+          ) : (
+            brandName
           )}
-          {brandName}
         </Link>
-        
+
         <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
           {navLinks.map((link, index) => {
-            // Add exact matching logic or startsWith logic
-            const isActive = location.pathname === link.path || 
-                             (link.path !== basePath && location.pathname.startsWith(link.path));
+            const isActive = location.pathname === link.path ||
+              (link.path !== basePath && location.pathname.startsWith(link.path));
             return (
               <li key={index} className="nav-item">
-                <Link 
-                  to={link.path} 
+                <Link
+                  to={link.path}
                   className={`nav-link ${isActive ? 'active' : ''}`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -48,12 +56,27 @@ const ModernNavbar = ({ brandName, basePath }) => {
               </li>
             );
           })}
+          {basePath === '/doctor' && (
+            <li className="nav-item" style={{ marginLeft: '1rem', display: 'flex', alignItems: 'center' }}>
+              <button
+                className="nav-book-btn"
+                onClick={() => {
+                  setIsOpen(false);
+                  const event = new CustomEvent('openBookingModal');
+                  window.dispatchEvent(event);
+                }}
+              >
+                Book Appointment
+              </button>
+            </li>
+          )}
         </ul>
 
         <div className="menu-icon" onClick={toggleMenu}>
           {isOpen ? <FaTimes /> : <FaBars />}
         </div>
       </div>
+      <BookingModal basePath={basePath} />
     </nav>
   );
 };

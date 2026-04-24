@@ -1,0 +1,593 @@
+/* ── Doctor Site Styles (Rehab Maxx Inspiration) ───────────────── */
+
+/* Force clean medical theme when in doctor context */
+body.theme-doctor {
+  background-color: #F8F9FA !important;
+  color: #333333 !important;
+  font-family: 'Poppins', 'Montserrat', sans-serif !important;
+}
+
+body.theme-doctor::before,
+body.theme-doctor::after {
+  display: none !important; /* Hide glowing orbs from global.css */
+}
+
+.theme-doctor .live-wallpaper {
+  display: none !important; /* Hide floating particles */
+}
+
+/* Color Variables for Doctor Theme */
+.theme-doctor {
+  --doc-primary: #38A3A5; /* Teal */
+  --doc-primary-dark: #22577A; /* Navy/Deep Teal */
+  --doc-accent: #57CC99; /* Light Green */
+  --doc-bg: #FFFFFF;
+  --doc-surface: #F8F9FA;
+  --doc-text: #2D3748;
+  --doc-text-light: #718096;
+}
+
+/* ── Typography & Headings ───────────────────────────────────── */
+.theme-doctor h1, .theme-doctor h2, .theme-doctor h3, .theme-doctor h4, .theme-doctor h5 {
+  color: var(--doc-primary-dark);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.theme-doctor .section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 3rem;
+  color: var(--doc-primary-dark);
+}
+
+.theme-doctor .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--doc-primary);
+  border-radius: 2px;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.theme-doctor .doc-btn {
+  display: inline-block;
+  background-color: var(--doc-primary);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.theme-doctor .doc-btn:hover {
+  background-color: transparent;
+  color: var(--doc-primary);
+  border-color: var(--doc-primary);
+  box-shadow: 0 4px 15px rgba(56, 163, 165, 0.3);
+}
+
+.theme-doctor .doc-btn-outline {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--doc-primary);
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 2px solid var(--doc-primary);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.theme-doctor .doc-btn-outline:hover {
+  background-color: var(--doc-primary);
+  color: #fff;
+}
+
+/* ── Hero Section ────────────────────────────────────────────── */
+.theme-doctor .doc-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: -80px; /* Offset for navbar if transparent, adjust as needed */
+  padding-top: 80px;
+}
+
+.theme-doctor .doc-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(34, 87, 122, 0.85) 0%, rgba(56, 163, 165, 0.6) 100%);
+  z-index: 1;
+}
+
+.theme-doctor .doc-hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.theme-doctor .doc-hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.theme-doctor .doc-hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* ── About Section ───────────────────────────────────────────── */
+.theme-doctor .doc-about-section {
+  padding: 5rem 2rem;
+  background-color: var(--doc-bg);
+}
+
+.theme-doctor .doc-about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .theme-doctor .doc-about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.theme-doctor .doc-about-img-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.theme-doctor .doc-about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.theme-doctor .doc-about-badge {
+  position: absolute;
+  bottom: -20px;
+  right: 20px;
+  background-color: var(--doc-primary);
+  color: white;
+  padding: 20px;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(56, 163, 165, 0.4);
+  z-index: 2;
+  border: 5px solid white;
+}
+
+.theme-doctor .doc-about-badge span {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.theme-doctor .doc-about-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--doc-text-light);
+  margin-bottom: 2rem;
+}
+
+/* ── Services Grid ───────────────────────────────────────────── */
+.theme-doctor .doc-services-section {
+  padding: 5rem 2rem;
+  background-color: var(--doc-surface);
+}
+
+.theme-doctor .doc-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.theme-doctor .doc-service-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-bottom: 4px solid transparent;
+}
+
+.theme-doctor .doc-service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  border-bottom: 4px solid var(--doc-primary);
+}
+
+.theme-doctor .doc-service-icon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(56, 163, 165, 0.1);
+  color: var(--doc-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.theme-doctor .doc-service-card:hover .doc-service-icon {
+  background-color: var(--doc-primary);
+  color: white;
+}
+
+.theme-doctor .doc-service-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.theme-doctor .doc-service-card p {
+  color: var(--doc-text-light);
+  line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.theme-doctor .doc-service-link {
+  color: var(--doc-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.3s ease;
+}
+
+.theme-doctor .doc-service-card:hover .doc-service-link {
+  gap: 0.8rem;
+}
+
+/* ── Features/Excellence Section ─────────────────────────────── */
+.theme-doctor .doc-features-section {
+  padding: 5rem 2rem;
+  background-color: white;
+}
+
+.theme-doctor .doc-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.theme-doctor .doc-feature-item {
+  text-align: center;
+  padding: 2rem;
+}
+
+.theme-doctor .doc-feature-icon {
+  font-size: 3rem;
+  color: var(--doc-primary);
+  margin-bottom: 1rem;
+}
+
+.theme-doctor .doc-feature-item h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.theme-doctor .doc-feature-item p {
+  color: var(--doc-text-light);
+}
+
+/* ── Contact Info Strip ──────────────────────────────────────── */
+.theme-doctor .doc-contact-strip {
+  background-color: var(--doc-primary-dark);
+  color: white;
+  padding: 3rem 2rem;
+}
+
+.theme-doctor .doc-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.theme-doctor .doc-contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-doctor .doc-contact-item svg {
+  font-size: 2.5rem;
+  color: var(--doc-primary);
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.theme-doctor .doc-contact-item p {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ── Navbar Overrides ────────────────────────────────────────── */
+.theme-doctor .modern-navbar {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+  border-bottom: 1px solid var(--doc-surface);
+}
+
+.theme-doctor .nav-brand {
+  color: var(--doc-primary-dark) !important;
+}
+
+.theme-doctor .nav-link {
+  color: var(--doc-text) !important;
+}
+
+.theme-doctor .nav-link:hover, .theme-doctor .nav-link.active {
+  color: var(--doc-primary) !important;
+}
+
+.theme-doctor .nav-book-btn {
+  background-color: var(--doc-primary) !important;
+  color: white !important;
+  border-radius: 30px !important;
+  padding: 8px 20px !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+.theme-doctor .nav-book-btn:hover {
+  background-color: var(--doc-primary-dark) !important;
+}
+
+.theme-doctor .hamburger {
+  color: var(--doc-primary-dark) !important;
+}
+
+/* ── Footer Overrides ────────────────────────────────────────── */
+.theme-doctor .footer {
+  background-color: #1A202C !important;
+  color: #E2E8F0 !important;
+  padding-top: 4rem;
+}
+
+.theme-doctor .footer h3 {
+  color: white !important;
+  border-bottom-color: var(--doc-primary) !important;
+}
+
+.theme-doctor .footer a:hover {
+  color: var(--doc-primary) !important;
+}
+
+.theme-doctor .social-icon:hover {
+  background-color: var(--doc-primary) !important;
+  color: white !important;
+}
+
+ / *    % %  F A Q   &   C T A   S t y l e s    % %  * / 
+ . d o c - c t a - b a n n e r   { 
+     b a c k g r o u n d :   w h i t e ; 
+     b o r d e r - r a d i u s :   2 0 p x ; 
+     p a d d i n g :   3 0 p x   4 0 p x ; 
+     d i s p l a y :   f l e x ; 
+     j u s t i f y - c o n t e n t :   s p a c e - b e t w e e n ; 
+     a l i g n - i t e m s :   c e n t e r ; 
+     b o x - s h a d o w :   0   1 0 p x   3 0 p x   r g b a ( 0 , 0 , 0 , 0 . 0 5 ) ; 
+     m a r g i n :   - 5 0 p x   a u t o   4 0 p x ; 
+     m a x - w i d t h :   1 0 0 0 p x ; 
+     p o s i t i o n :   r e l a t i v e ; 
+     z - i n d e x :   1 0 ; 
+ } 
+ . d o c - c t a - t i t l e   { 
+     f o n t - s i z e :   1 . 5 r e m ; 
+     c o l o r :   # 1 a 3 6 5 d ; 
+     m a r g i n - b o t t o m :   5 p x ; 
+ } 
+ . d o c - c t a - s u b t i t l e   { 
+     c o l o r :   # 6 4 7 4 8 B ; 
+     f o n t - s i z e :   0 . 9 5 r e m ; 
+ } 
+ . d o c - f a q - s e c t i o n   { 
+     b a c k g r o u n d - c o l o r :   # E 8 F 3 E F ; 
+     p a d d i n g :   8 0 p x   0 ; 
+     m a r g i n - t o p :   - 8 0 p x ; 
+     p a d d i n g - t o p :   1 2 0 p x ; 
+ } 
+ . d o c - f a q - g r i d   { 
+     d i s p l a y :   g r i d ; 
+     g r i d - t e m p l a t e - c o l u m n s :   1 f r   1 f r   1 . 5 f r ; 
+     g a p :   3 0 p x ; 
+     a l i g n - i t e m s :   f l e x - s t a r t ; 
+ } 
+ @ m e d i a   ( m a x - w i d t h :   9 0 0 p x )   { 
+     . d o c - f a q - g r i d   {   g r i d - t e m p l a t e - c o l u m n s :   1 f r ;   } 
+     . d o c - c t a - b a n n e r   {   f l e x - d i r e c t i o n :   c o l u m n ;   t e x t - a l i g n :   c e n t e r ;   g a p :   2 0 p x ;   p a d d i n g :   3 0 p x   2 0 p x ;   m a r g i n - t o p :   2 0 p x ; } 
+     . d o c - f a q - s e c t i o n   {   p a d d i n g - t o p :   6 0 p x ;   m a r g i n - t o p :   0 ;   } 
+ } 
+ . d o c - f a q - l e f t   h 3   { 
+     c o l o r :   # 3 8 A 3 A 5 ; 
+     t e x t - t r a n s f o r m :   u p p e r c a s e ; 
+     f o n t - s i z e :   0 . 8 5 r e m ; 
+     l e t t e r - s p a c i n g :   1 p x ; 
+     d i s p l a y :   f l e x ; 
+     a l i g n - i t e m s :   c e n t e r ; 
+     g a p :   1 0 p x ; 
+     m a r g i n - b o t t o m :   1 5 p x ; 
+ } 
+ . d o c - f a q - l e f t   h 3 : : b e f o r e   { 
+     c o n t e n t :   " " ; 
+     d i s p l a y :   i n l i n e - b l o c k ; 
+     w i d t h :   4 0 p x ; 
+     h e i g h t :   2 p x ; 
+     b a c k g r o u n d - c o l o r :   # 3 8 A 3 A 5 ; 
+ } 
+ . d o c - f a q - l e f t   h 2   { 
+     f o n t - s i z e :   2 . 5 r e m ; 
+     c o l o r :   # 1 a 3 6 5 d ; 
+     l i n e - h e i g h t :   1 . 2 ; 
+     m a r g i n - b o t t o m :   2 0 p x ; 
+ } 
+ . d o c - f a q - l e f t   h 2   s p a n   { 
+     c o l o r :   # 3 8 A 3 A 5 ; 
+ } 
+ . d o c - f a q - i m g   { 
+     w i d t h :   1 0 0 % ; 
+     h e i g h t :   1 0 0 % ; 
+     o b j e c t - f i t :   c o v e r ; 
+     b o r d e r - r a d i u s :   2 0 p x ; 
+     m i n - h e i g h t :   4 0 0 p x ; 
+ } 
+ . d o c - a c c o r d i o n - i t e m   { 
+     b a c k g r o u n d :   w h i t e ; 
+     b o r d e r - r a d i u s :   8 p x ; 
+     m a r g i n - b o t t o m :   1 5 p x ; 
+     o v e r f l o w :   h i d d e n ; 
+ } 
+ . d o c - a c c o r d i o n - h e a d e r   { 
+     p a d d i n g :   2 0 p x ; 
+     c u r s o r :   p o i n t e r ; 
+     d i s p l a y :   f l e x ; 
+     j u s t i f y - c o n t e n t :   s p a c e - b e t w e e n ; 
+     a l i g n - i t e m s :   c e n t e r ; 
+     f o n t - w e i g h t :   5 0 0 ; 
+     c o l o r :   # 1 a 3 6 5 d ; 
+ } 
+ . d o c - a c c o r d i o n - c o n t e n t   { 
+     p a d d i n g :   0   2 0 p x   2 0 p x ; 
+     c o l o r :   # 6 4 7 4 8 B ; 
+     f o n t - s i z e :   0 . 9 5 r e m ; 
+     l i n e - h e i g h t :   1 . 6 ; 
+ } 
+ 
+ / *    % %  A b o u t   S e c t i o n   C o l l a g e   S t y l e s    % %  * / 
+ . d o c - a b o u t - c o l l a g e   { 
+     p o s i t i o n :   r e l a t i v e ; 
+     d i s p l a y :   g r i d ; 
+     g r i d - t e m p l a t e - c o l u m n s :   1 . 2 f r   1 f r ; 
+     g r i d - t e m p l a t e - r o w s :   1 f r   1 f r ; 
+     g a p :   2 0 p x ; 
+     h e i g h t :   5 0 0 p x ; 
+ } 
+ . d o c - a b o u t - c o l l a g e   i m g   { 
+     b o r d e r - r a d i u s :   2 0 p x ; 
+     o b j e c t - f i t :   c o v e r ; 
+     w i d t h :   1 0 0 % ; 
+     h e i g h t :   1 0 0 % ; 
+ } 
+ . d o c - a b o u t - i m g - m a i n   { 
+     g r i d - c o l u m n :   1   /   2 ; 
+     g r i d - r o w :   1   /   3 ; 
+ } 
+ . d o c - a b o u t - i m g - t o p   { 
+     g r i d - c o l u m n :   2   /   3 ; 
+     g r i d - r o w :   1   /   2 ; 
+ } 
+ . d o c - a b o u t - i m g - b o t   { 
+     g r i d - c o l u m n :   2   /   3 ; 
+     g r i d - r o w :   2   /   3 ; 
+ } 
+ . d o c - a b o u t - b a d g e - n e w   { 
+     p o s i t i o n :   a b s o l u t e ; 
+     t o p :   5 0 % ; 
+     l e f t :   5 0 % ; 
+     t r a n s f o r m :   t r a n s l a t e ( - 5 0 % ,   - 5 0 % ) ; 
+     b a c k g r o u n d :   # 0 f 2 c 2 9 ; 
+     c o l o r :   w h i t e ; 
+     w i d t h :   1 4 0 p x ; 
+     h e i g h t :   1 4 0 p x ; 
+     b o r d e r - r a d i u s :   5 0 % ; 
+     d i s p l a y :   f l e x ; 
+     f l e x - d i r e c t i o n :   c o l u m n ; 
+     j u s t i f y - c o n t e n t :   c e n t e r ; 
+     a l i g n - i t e m s :   c e n t e r ; 
+     b o r d e r :   1 0 p x   s o l i d   # F 8 F A F C ; 
+     b o x - s h a d o w :   0   1 0 p x   2 0 p x   r g b a ( 0 , 0 , 0 , 0 . 1 ) ; 
+     t e x t - a l i g n :   c e n t e r ; 
+ } 
+ . d o c - a b o u t - b a d g e - n e w   . y e a r s   { 
+     f o n t - s i z e :   2 . 5 r e m ; 
+     f o n t - w e i g h t :   b o l d ; 
+     l i n e - h e i g h t :   1 ; 
+ } 
+ . d o c - a b o u t - b a d g e - n e w   . t e x t   { 
+     f o n t - s i z e :   0 . 7 r e m ; 
+     t e x t - t r a n s f o r m :   u p p e r c a s e ; 
+     l e t t e r - s p a c i n g :   1 p x ; 
+     m a r g i n - t o p :   5 p x ; 
+ } 
+ . d o c - p r o f i l e - s n i p p e t   { 
+     d i s p l a y :   f l e x ; 
+     a l i g n - i t e m s :   c e n t e r ; 
+     g a p :   1 5 p x ; 
+     m a r g i n - t o p :   2 5 p x ; 
+     m a r g i n - b o t t o m :   2 5 p x ; 
+ } 
+ . d o c - p r o f i l e - i m g   { 
+     w i d t h :   6 0 p x ; 
+     h e i g h t :   6 0 p x ; 
+     b o r d e r - r a d i u s :   5 0 % ; 
+     o b j e c t - f i t :   c o v e r ; 
+ } 
+ . d o c - p r o f i l e - i n f o   h 4   { 
+     c o l o r :   # 1 a 3 6 5 d ; 
+     m a r g i n - b o t t o m :   3 p x ; 
+ } 
+ . d o c - p r o f i l e - i n f o   p   { 
+     c o l o r :   # 6 4 7 4 8 B ; 
+     f o n t - s i z e :   0 . 8 5 r e m ; 
+     m a r g i n :   0 ; 
+ } 
+  
+ 

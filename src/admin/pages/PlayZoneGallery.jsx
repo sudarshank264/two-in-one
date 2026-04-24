@@ -84,7 +84,7 @@ const PlayZoneGalleryAdmin = () => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1.5rem' }}>
         {images.map(item => (
           <div key={item._id} style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
-            <img src={import.meta.env.VITE_API_URL.replace('/api', '') + item.image} alt={item.altText} style={{ width: '100%', height: '150px', objectFit: 'cover', display: 'block' }} />
+            <img src={(import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '') + item.image} alt={item.altText} style={{ width: '100%', height: '150px', objectFit: 'cover', display: 'block' }} />
             <div style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.875rem', color: '#4b5563', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.altText || 'No caption'}</span>
               <div style={{ display: 'flex', gap: '0.5rem' }}>

@@ -28,6 +28,7 @@ const PlayZonePage = () => {
       setActivities(actRes.data || []);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setSettings({});
     } finally {
       setLoading(false);
     }
@@ -44,10 +45,9 @@ const PlayZonePage = () => {
   };
 
   if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
-  if (!settings) return <div>Failed to load data.</div>;
 
-  const d = settings;
-  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+  const d = settings || {};
+  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
 
   return (
     <div>

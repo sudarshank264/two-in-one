@@ -7,7 +7,8 @@ import {
   FiSettings, 
   FiImage, 
   FiActivity,
-  FiX
+  FiX,
+  FiList
 } from 'react-icons/fi';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
@@ -41,6 +42,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       </div>
       <ul className="admin-nav-list">
         <NavItem path="/admin/dashboard" name="Overview" icon={<FiHome />} />
+        <NavItem path="/admin/leads" name="Leads" icon={<FiList />} />
         
         <li className="admin-nav-section-title" style={{ padding: '1rem 1rem 0.25rem', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--admin-text-muted)', fontWeight: 'bold' }}>
           Doctor

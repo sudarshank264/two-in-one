@@ -45,7 +45,7 @@ const DoctorServiceDetail = () => {
   }
 
   const d = settings || {};
-  const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
 
   return (
     <div style={{ background: 'var(--background-light)', minHeight: '100vh' }}>

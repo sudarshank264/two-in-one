@@ -7,11 +7,12 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import AdminLogin from '../admin/pages/Login';
 import AdminDashboard from '../admin/pages/Dashboard';
 import AdminOverview from '../admin/pages/Overview';
+import AdminLeads from '../admin/pages/Leads';
 import AdminProtectedRoute from '../admin/components/AdminProtectedRoute';
 
 // Admin Doctor CRUD
 import DoctorSettings from '../admin/pages/DoctorSettings';
-import DoctorBlogs from '../admin/pages/DoctorBlogs';
+import DoctorBlogsAdmin from '../admin/pages/DoctorBlogs';
 import DoctorServicesAdmin from '../admin/pages/DoctorServices';
 import DoctorGalleryAdmin from '../admin/pages/DoctorGallery';
 
@@ -27,6 +28,8 @@ import DoctorAbout from '../pages/DoctorAbout';
 import DoctorServices from '../pages/DoctorServices';
 import DoctorGallery from '../pages/DoctorGallery';
 import DoctorServiceDetail from '../pages/DoctorServiceDetail';
+import DoctorBlogs from '../pages/DoctorBlogs';
+import DoctorBlogDetail from '../pages/DoctorBlogDetail';
 
 // Play Zone Pages
 import PlayZonePage from '../pages/PlayZonePage';
@@ -46,6 +49,8 @@ const AppRoutes = () => {
       <Route path="/doctor/services" element={<ProtectedRoute expectedPlatform="doctor"><DoctorServices /></ProtectedRoute>} />
       <Route path="/doctor/services/:id" element={<ProtectedRoute expectedPlatform="doctor"><DoctorServiceDetail /></ProtectedRoute>} />
       <Route path="/doctor/gallery" element={<ProtectedRoute expectedPlatform="doctor"><DoctorGallery /></ProtectedRoute>} />
+      <Route path="/doctor/blogs" element={<ProtectedRoute expectedPlatform="doctor"><DoctorBlogs /></ProtectedRoute>} />
+      <Route path="/doctor/blogs/:id" element={<ProtectedRoute expectedPlatform="doctor"><DoctorBlogDetail /></ProtectedRoute>} />
 
       {/* Play Zone Routes (Protected) */}
       <Route path="/play-zone" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZonePage /></ProtectedRoute>} />
@@ -59,10 +64,11 @@ const AppRoutes = () => {
       <Route path="/admin" element={<AdminProtectedRoute />}>
         <Route element={<AdminDashboard />}>
           <Route path="dashboard" element={<AdminOverview />} />
+          <Route path="leads" element={<AdminLeads />} />
           
           {/* Doctor Admin Routes */}
           <Route path="doctor/settings" element={<DoctorSettings />} />
-          <Route path="doctor/blogs" element={<DoctorBlogs />} />
+          <Route path="doctor/blogs" element={<DoctorBlogsAdmin />} />
           <Route path="doctor/services" element={<DoctorServicesAdmin />} />
           <Route path="doctor/gallery" element={<DoctorGalleryAdmin />} />
 

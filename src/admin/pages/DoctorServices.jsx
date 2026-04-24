@@ -97,7 +97,7 @@ const DoctorServicesAdmin = () => {
             {services.map(svc => (
               <tr key={svc._id} style={{ borderBottom: '1px solid #e5e7eb' }}>
                 <td style={{ padding: '1rem' }}>
-                  <img src={import.meta.env.VITE_API_URL.replace('/api', '') + svc.image} alt={svc.title} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }} />
+                  <img src={(import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '') + svc.image} alt={svc.title} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }} />
                 </td>
                 <td style={{ padding: '1rem', fontWeight: 'bold' }}>{svc.title}</td>
                 <td style={{ padding: '1rem', color: '#6b7280' }}>{svc.shortDescription.substring(0, 50)}...</td>
