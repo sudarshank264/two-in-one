@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCheckCircle } from 'react-icons/fa';
 import ModernNavbar from '../components/ModernNavbar';
-import Footer from '../components/Footer';
+import PlayZoneFooter from '../components/PlayZoneFooter';
 import '../styles/playzone.css';
 import api from '../admin/utils/api';
 
@@ -168,7 +168,7 @@ const PlayZonePage = () => {
         </motion.div>
       </section>
 
-      <Footer brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
+      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };

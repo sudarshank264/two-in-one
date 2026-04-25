@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import {
-  Globe,
-  MessageCircle,
-  Share2,
-  Users,
-  Phone,
-  Mail,
-  MapPin,
-  ChevronRight
+import { 
+  Globe, 
+  MessageCircle, 
+  Share2, 
+  Users, 
+  Phone, 
+  Mail, 
+  MapPin, 
+  ChevronRight 
 } from 'lucide-react';
 import logo from './assets/physio-care-logo.svg';
 
@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-grid">
-
+        
         {/* Column 1: Branding & Socials */}
         <div className="footer-col">
           <img src={logo} alt="Physio Care Logo" className="footer-logo" />
@@ -38,7 +38,7 @@ export default function Footer() {
             <li><Link to="/"><ChevronRight size={14} /> Home</Link></li>
             <li><Link to="/about"><ChevronRight size={14} /> About Us</Link></li>
             <li><Link to="/services"><ChevronRight size={14} /> Our Services</Link></li>
-            <li><Link to="/book-appointment"><ChevronRight size={14} /> Book a Visit</Link></li>
+            <li><Link to="/book-appointment"><ChevronRight size={14} /> Book Appointment</Link></li>
             <li><Link to="/contact"><ChevronRight size={14} /> Contact Us</Link></li>
           </ul>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ModernNavbar from '../components/ModernNavbar';
-import Footer from '../components/Footer';
+import DoctorFooter from '../components/DoctorFooter';
 import api from '../admin/utils/api';
 import { FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
 
@@ -77,7 +77,7 @@ const DoctorServiceDetail = () => {
         </div>
       </section>
 
-      <Footer brandName={d.aboutTitle || "Physio Care"} description={d.aboutText} address={d.contactAddress} />
+      <DoctorFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Physio Care"} description={d.aboutText} address={d.contactAddress} />
     </div>
   );
 };

@@ -6,12 +6,12 @@ import logo from './assets/physio-care-logo.svg';
 export default function BookAppointment() {
   return (
     <div className="app-wrapper">
-
+      
       {/* 1. TOP BAR */}
       <div className="top-bar">
         <div className="container top-bar-inner">
           <div className="top-left">
-            <span><MapPin size={14} /> Gorakhpur, Uttar Pradesh</span>
+            <span><MapPin size={14}/> Gorakhpur, Uttar Pradesh</span>
           </div>
           <div className="top-right">
             <span>Help Desk: +91 98765 43210</span>
@@ -32,7 +32,7 @@ export default function BookAppointment() {
             <li><Link to="/contact">Contact</Link></li>
           </ul>
           {/* Note: This button is already active since we are on the page */}
-          <Link to="/doctor/book-a-visit" className="btn-primary btn-round">Book a Visit</Link>
+          <Link to="/doctor/book-appointment" className="btn-primary btn-round">Book Appointment</Link>
         </nav>
       </div>
 
@@ -80,7 +80,7 @@ export default function BookAppointment() {
                   </select>
                 </div>
               </div>
-
+              
               <div className="form-group" style={{ marginBottom: '20px' }}>
                 <label>Additional Message / Symptoms</label>
                 <textarea className="form-control" placeholder="Briefly describe what you need help with..."></textarea>

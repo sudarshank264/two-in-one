@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ModernNavbar from '../components/ModernNavbar';
-import Footer from '../components/Footer';
+import PlayZoneFooter from '../components/PlayZoneFooter';
 import api from '../admin/utils/api';
 import { FaArrowLeft } from 'react-icons/fa';
 import '../styles/playzone.css';
@@ -82,7 +82,7 @@ const PlayZoneServiceDetail = () => {
         </div>
       </section>
 
-      <Footer brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
+      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };
