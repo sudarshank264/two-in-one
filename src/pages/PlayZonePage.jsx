@@ -10,6 +10,8 @@ import api from '../admin/utils/api';
 const PlayZonePage = () => {
   const [settings, setSettings] = useState(null);
   const [activities, setActivities] = useState([]);
+  const [services, setServices] = useState([]);
+  const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,12 +22,16 @@ const PlayZonePage = () => {
 
   const fetchData = async () => {
     try {
-      const [settingsRes, actRes] = await Promise.all([
+      const [settingsRes, actRes, servicesRes, galleryRes] = await Promise.all([
         api.get('/playzone/about'),
-        api.get('/playzone/activities')
+        api.get('/playzone/activities'),
+        api.get('/playzone/services'),
+        api.get('/playzone/gallery')
       ]);
       setSettings(settingsRes.data);
       setActivities(actRes.data || []);
+      setServices(servicesRes.data || []);
+      setGallery(galleryRes.data || []);
     } catch (error) {
       console.error('Error fetching data:', error);
       setSettings({});
@@ -82,10 +88,38 @@ const PlayZonePage = () => {
           ))}
         </motion.div>
         
-        <div className="text-center" style={{ marginTop: '40px' }}>
-          <Link to="/play-zone/activities" className="pz-btn" style={{ background: '#ef4444' }}>Explore All Activities</Link>
+        <div className="text-center" style={{ marginTop: '40px', textAlign: 'center' }}>
+          <Link to="/play-zone/activities" className="pz-btn">Explore All Activities</Link>
         </div>
       </section>
+
+      {(services && services.length > 0) && (
+        <section className="pz-section pz-services-section">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+            <h2 className="pz-section-title">Our Premium Services</h2>
+            <p className="pz-section-subtitle">Exceptional experiences tailored for you.</p>
+          </motion.div>
+
+          <motion.div className="pz-activities-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+            {services.slice(0, 3).map((svc) => (
+              <motion.div key={svc._id} className="pz-activity-card" variants={fadeUp}>
+                <div className="pz-activity-img-wrap">
+                  <img src={baseUrl + svc.image} alt={svc.title} className="pz-activity-img" />
+                </div>
+                <div className="pz-activity-content">
+                  <h3>{svc.title}</h3>
+                  <p>{svc.shortDescription && svc.shortDescription.substring(0, 100)}...</p>
+                  <Link to={`/play-zone/services/${svc._id}`} className="card-action">View Service</Link>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+          
+          <div className="text-center" style={{ marginTop: '40px', textAlign: 'center' }}>
+            <Link to="/play-zone/services" className="pz-btn">View All Services</Link>
+          </div>
+        </section>
+      )}
 
       <section className="pz-section pz-features">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
@@ -101,6 +135,27 @@ const PlayZonePage = () => {
           ))}
         </motion.div>
       </section>
+
+      {(gallery && gallery.length > 0) && (
+        <section className="pz-section">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+            <h2 className="pz-section-title">Play Zone Gallery</h2>
+          </motion.div>
+          <div className="pz-gallery-grid">
+            {gallery.slice(0, 6).map((item) => (
+              <div key={item._id} className="pz-gallery-item">
+                <img src={baseUrl + item.image} alt={item.altText || 'Gallery Image'} />
+                <div className="pz-gallery-item-title">
+                  {item.altText || 'Gallery Image'}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <Link to="/play-zone/gallery" className="pz-btn">View Full Gallery</Link>
+          </div>
+        </section>
+      )}
 
       <section className="pz-section" style={{ background: 'linear-gradient(to bottom, #fffbf0, #ffe5e5)' }}>
         <motion.div className="pz-contact-container" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>

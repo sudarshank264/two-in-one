@@ -18,7 +18,7 @@ const BookingModal = ({ basePath }) => {
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
     window.addEventListener('openBookingModal', handleOpen);
-    
+
     // Fetch services based on basePath
     const fetchServices = async () => {
       try {
@@ -29,7 +29,7 @@ const BookingModal = ({ basePath }) => {
         console.error('Error fetching services for booking modal:', error);
       }
     };
-    
+
     fetchServices();
 
     return () => window.removeEventListener('openBookingModal', handleOpen);
@@ -42,7 +42,7 @@ const BookingModal = ({ basePath }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ type: 'loading', msg: 'Submitting...' });
-    
+
     try {
       const source = basePath === '/doctor' ? 'doctor' : 'playzone';
       await api.post('/leads', { ...formData, source });
@@ -66,9 +66,9 @@ const BookingModal = ({ basePath }) => {
         <button className="booking-modal-close" onClick={() => setIsOpen(false)}>
           <FaTimes />
         </button>
-        
+
         <h2>Book Your Appointment</h2>
-        
+
         {status.msg && (
           <div className={`booking-status ${status.type}`}>
             {status.msg}
@@ -78,40 +78,40 @@ const BookingModal = ({ basePath }) => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Name*</label>
-            <input 
-              type="text" 
-              name="name" 
-              value={formData.name} 
-              onChange={handleChange} 
-              placeholder="Enter your name" 
-              required 
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              required
             />
           </div>
-          
+
           <div className="form-group">
             <label>Email*</label>
-            <input 
-              type="email" 
-              name="email" 
-              value={formData.email} 
-              onChange={handleChange} 
-              placeholder="Enter your email" 
-              required 
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
             />
           </div>
-          
+
           <div className="form-group">
             <label>Phone Number*</label>
-            <input 
-              type="tel" 
-              name="phone" 
-              value={formData.phone} 
-              onChange={handleChange} 
-              placeholder="Enter your phone number" 
-              required 
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Enter your phone number"
+              required
             />
           </div>
-          
+
           <div className="form-group">
             <label>Services*</label>
             <select name="service" value={formData.service} onChange={handleChange} required>
@@ -121,22 +121,22 @@ const BookingModal = ({ basePath }) => {
               ))}
             </select>
           </div>
-          
+
           <div className="form-group">
             <label>Message</label>
-            <textarea 
-              name="message" 
-              value={formData.message} 
-              onChange={handleChange} 
-              placeholder="Write your message..." 
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Write your message..."
               rows="4"
             ></textarea>
           </div>
-          
+
           <button type="submit" className="booking-submit-btn" disabled={status.type === 'loading'}>
-            <span style={{ background: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginRight: '10px' }}>
+            {/* <span style={{ background: 'green', borderRadius: '50%', width: '24px', height: '24px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginRight: '10px' }}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--doc-primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="9 5 19 5 19 15"></polyline></svg>
-            </span>
+            </span> */}
             Submit
           </button>
         </form>

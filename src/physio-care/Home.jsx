@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Clock, PlayCircle, ArrowUpRight } from 'lucide-react';
 import './Home.css';
-import logo from './assets/physio-care-logo.svg'; 
+import logo from './assets/physio-care-logo.svg';
 
 export default function Home() {
   return (
     <div className="app-wrapper">
-      
+
       {/* 1. TOP BAR */}
       <div className="top-bar">
         <div className="container top-bar-inner">
           <div className="top-left">
-            <span><MapPin size={14}/> Gorakhpur, Uttar Pradesh</span>
+            <span><MapPin size={14} /> Gorakhpur, Uttar Pradesh</span>
             <span className="divider">|</span>
-            <span><Clock size={14}/> Working Time: 09:30 am To 07:30 pm</span>
+            <span><Clock size={14} /> Working Time: 09:30 am To 07:30 pm</span>
           </div>
           <div className="top-right">
             <span>Help Desk: +91 98765 43210</span>
@@ -35,7 +35,7 @@ export default function Home() {
             <li><Link to="/gallery">Gallery</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
-          <Link to="/book-appointment" className="btn-primary btn-round">Book Appointment</Link>
+          <Link to="/book-appointment" className="btn-primary btn-round">Book a Visit</Link>
         </nav>
       </div>
 
@@ -44,11 +44,11 @@ export default function Home() {
         <div className="container position-relative">
           <div className="hero-content">
             <span className="subtitle">HELPING HANDS</span>
-            <h1>Stretch Your Body To <br/>Reduce <span className="text-maroon">Daily Pain</span></h1>
+            <h1>Stretch Your Body To <br />Reduce <span className="text-maroon">Daily Pain</span></h1>
             <p>Daily tasks like typing, lifting, or walking can place constant stress on your joints, leading to stiffness, soreness, and fatigue. We are here to heal.</p>
             <div className="hero-actions">
               <Link to="/contact" className="btn-primary btn-round">Contact us</Link>
-              
+
             </div>
           </div>
           <div className="experience-box">
@@ -97,7 +97,7 @@ export default function Home() {
               <div className="service-content">
                 <h3>Geriatric Physiotherapy</h3>
                 <p>Specially designed for elderly individuals to improve mobility and reduce pain.</p>
-                <Link to="/services/geriatric" className="service-link"><ArrowUpRight size={20}/></Link>
+                <Link to="/services/geriatric" className="service-link"><ArrowUpRight size={20} /></Link>
               </div>
             </div>
             {/* Neurological Card */}
@@ -106,7 +106,7 @@ export default function Home() {
               <div className="service-content">
                 <h3>Neurological Physiotherapy</h3>
                 <p>Focuses on improving movement, balance, and function for patients.</p>
-                <Link to="/services/neurological" className="service-link"><ArrowUpRight size={20}/></Link>
+                <Link to="/services/neurological" className="service-link"><ArrowUpRight size={20} /></Link>
               </div>
             </div>
             {/* Post Surgical Card */}
@@ -115,7 +115,7 @@ export default function Home() {
               <div className="service-content">
                 <h3>Post Surgical Rehabilitation</h3>
                 <p>A structured program designed to help you regain strength safely.</p>
-                <Link to="/services/post-surgical" className="service-link"><ArrowUpRight size={20}/></Link>
+                <Link to="/services/post-surgical" className="service-link"><ArrowUpRight size={20} /></Link>
               </div>
             </div>
           </div>

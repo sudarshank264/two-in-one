@@ -37,6 +37,8 @@ import PlayZoneAbout from '../pages/PlayZoneAbout';
 import PlayZoneActivities from '../pages/PlayZoneActivities';
 import PlayZoneGallery from '../pages/PlayZoneGallery';
 import PlayZoneActivityDetail from '../pages/PlayZoneActivityDetail';
+import PlayZoneServices from '../pages/PlayZoneServices';
+import PlayZoneServiceDetail from '../pages/PlayZoneServiceDetail';
 
 const AppRoutes = () => {
   return (
@@ -57,6 +59,8 @@ const AppRoutes = () => {
       <Route path="/play-zone/about" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneAbout /></ProtectedRoute>} />
       <Route path="/play-zone/activities" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneActivities /></ProtectedRoute>} />
       <Route path="/play-zone/activities/:id" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneActivityDetail /></ProtectedRoute>} />
+      <Route path="/play-zone/services" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneServices /></ProtectedRoute>} />
+      <Route path="/play-zone/services/:id" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneServiceDetail /></ProtectedRoute>} />
       <Route path="/play-zone/gallery" element={<ProtectedRoute expectedPlatform="play-zone"><PlayZoneGallery /></ProtectedRoute>} />
 
       {/* Admin Routes */}

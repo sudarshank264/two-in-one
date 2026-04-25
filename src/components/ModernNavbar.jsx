@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaArrowLeft } from 'react-icons/fa';
 import BookingModal from './BookingModal';
 import './ModernNavbar.css';
 
@@ -14,7 +14,8 @@ const ModernNavbar = ({ brandName, basePath }) => {
   const navLinks = [
     { title: 'Home', path: `${basePath}` },
     { title: 'About', path: `${basePath}/about` },
-    { title: basePath === '/doctor' ? 'Services' : 'Activities', path: basePath === '/doctor' ? `${basePath}/services` : `${basePath}/activities` },
+    { title: 'Services', path: `${basePath}/services` },
+    ...(basePath === '/play-zone' ? [{ title: 'Activities', path: `${basePath}/activities` }] : []),
     { title: 'Gallery', path: `${basePath}/gallery` },
     ...(basePath === '/doctor' ? [{ title: 'Blogs', path: `${basePath}/blogs` }] : [])
   ];
@@ -56,20 +57,21 @@ const ModernNavbar = ({ brandName, basePath }) => {
               </li>
             );
           })}
-          {basePath === '/doctor' && (
-            <li className="nav-item" style={{ marginLeft: '1rem', display: 'flex', alignItems: 'center' }}>
-              <button
-                className="nav-book-btn"
-                onClick={() => {
-                  setIsOpen(false);
-                  const event = new CustomEvent('openBookingModal');
-                  window.dispatchEvent(event);
-                }}
-              >
-                Book Appointment
-              </button>
-            </li>
-          )}
+          <li className="nav-item nav-buttons-container">
+            <Link to="/" className="nav-back-btn">
+              <FaArrowLeft size={12} /> Portal
+            </Link>
+            <button
+              className="nav-book-btn"
+              onClick={() => {
+                setIsOpen(false);
+                const event = new CustomEvent('openBookingModal');
+                window.dispatchEvent(event);
+              }}
+            >
+              Book Appointment
+            </button>
+          </li>
         </ul>
 
         <div className="menu-icon" onClick={toggleMenu}>

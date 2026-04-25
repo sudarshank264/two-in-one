@@ -157,20 +157,7 @@ const DoctorPage = () => {
       )}
 
       {/* ── CTA Banner ── */}
-      <div className="container" style={{ position: 'relative' }}>
-        <div className="doc-cta-banner">
-          <div>
-            <h3 className="doc-cta-title">Ready To Start Your Journey To Recovery?</h3>
-            <p className="doc-cta-subtitle">Contact us today to schedule your initial consultation.</p>
-          </div>
-          <button onClick={() => window.dispatchEvent(new CustomEvent('openBookingModal'))} className="doc-btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', border: 'none', cursor: 'pointer', flexShrink: 0 }}>
-            <span style={{ background: 'white', color: 'var(--doc-primary)', borderRadius: '50%', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <FaArrowRight size={10} style={{ transform: 'rotate(-45deg)' }} />
-            </span>
-            Book Appointment
-          </button>
-        </div>
-      </div>
+     
 
       {/* ── FAQ Section ── */}
       <section className="doc-faq-section">
@@ -204,6 +191,22 @@ const DoctorPage = () => {
             ))}
           </div>
         </div>
+        <div>
+           <div className="container" style={{ position: 'relative' }}>
+        <div className="doc-cta-banner">
+          <div>
+            <h3 className="doc-cta-title">Ready To Start Your Journey To Recovery?</h3>
+            <p className="doc-cta-subtitle">Contact us today to schedule your initial consultation.</p>
+          </div>
+          <button onClick={() => window.dispatchEvent(new CustomEvent('openBookingModal'))} className="doc-btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', border: 'none', cursor: 'pointer', flexShrink: 0 }}>
+            <span style={{ background: 'white', color: 'var(--doc-primary)', borderRadius: '50%', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <FaArrowRight size={10} style={{ transform: 'rotate(-45deg)' }} />
+            </span>
+            Book Appointment
+          </button>
+        </div>
+      </div>
+        </div>
       </section>
 
       {/* ── Gallery Section ── */}
@@ -227,8 +230,8 @@ const DoctorPage = () => {
       {(d.features && d.features.length > 0) && (
         <section className="doc-features-section">
           <h2 className="section-title">Excellence In Care And Rehabilitation</h2>
-          <div className="doc-features-grid">
-            {d.features?.map((feat, index) => (
+          <div className="doc-features-marquee">
+            {[...d.features, ...d.features].map((feat, index) => (
               <div key={index} className="doc-feature-item">
                 <div className="doc-feature-icon">
                   <FaCheckCircle />
