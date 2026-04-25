@@ -78,9 +78,7 @@ const PlayZoneFooter = ({ brandName, description, address, phone, email }) => {
             </div>
           </div>
           
-          <button className="pz-footer-cta" onClick={() => window.scrollTo(0,0)}>
-            <FaPaperPlane className="cta-icon" /> Book a Visit
-          </button>
+          
         </div>
       </div>
 

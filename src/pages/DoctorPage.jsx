@@ -245,7 +245,7 @@ const DoctorPage = () => {
       )}
 
       {/* ── Contact Info Strip ── */}
-      <section className="doc-contact-strip">
+      {/* <section className="doc-contact-strip">
         <div className="doc-contact-grid">
           <div className="doc-contact-item">
             <FaPhoneAlt />
@@ -260,7 +260,7 @@ const DoctorPage = () => {
             <p>{d.contactAddress || '123 Clinic Street, Medical District'}</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <DoctorFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Physio Care"} description={d.aboutText} address={d.contactAddress} />
     </div>
