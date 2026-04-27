@@ -82,7 +82,8 @@ const PlayZonePage = () => {
               <div className="pz-activity-content">
                 <h3>{act.title}</h3>
                 <p>{act.description.substring(0, 100)}...</p>
-                <Link to={`/play-zone/activities/${act._id}`} className="card-action">View Activity</Link>
+                <Link to={`/play-zone/activities/${act._id}`} className="card-action">View Activity →
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -109,7 +110,7 @@ const PlayZonePage = () => {
                 <div className="pz-activity-content">
                   <h3>{svc.title}</h3>
                   <p>{svc.shortDescription && svc.shortDescription.substring(0, 100)}...</p>
-                  <Link to={`/play-zone/services/${svc._id}`} className="card-action">View Service</Link>
+                  <Link to={`/play-zone/services/${svc._id}`} className="card-action">View Services →</Link>
                 </div>
               </motion.div>
             ))}

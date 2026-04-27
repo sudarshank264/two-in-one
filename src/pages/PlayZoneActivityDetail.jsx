@@ -73,18 +73,19 @@ const PlayZoneActivityDetail = () => {
         </div>
 
         <motion.div 
-          style={{ background: 'white', padding: '50px', borderRadius: '32px', boxShadow: '0 15px 40px rgba(245, 158, 11, 0.15)' }}
+          style={{ background: 'white', padding: 'clamp(20px, 5vw, 50px)', borderRadius: '32px', boxShadow: '0 15px 40px rgba(245, 158, 11, 0.15)' }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h2 style={{ marginBottom: '30px', color: 'var(--text-dark)', fontSize: '2.5rem', fontWeight: '800' }}>More Details!</h2>
+          <h2 style={{ marginBottom: '30px', color: 'var(--text-dark)', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: '800' }}>More Details!</h2>
           <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#555', marginBottom: '40px', whiteSpace: 'pre-line' }}>
             {activity.description}
           </p>
 
           <div className="text-center">
             <motion.button 
+              onClick={() => window.dispatchEvent(new CustomEvent('openBookingModal'))}
               className="pz-btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

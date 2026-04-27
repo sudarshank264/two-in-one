@@ -6,9 +6,9 @@ import { usePlatform } from '../context/PlatformContext';
 const Card = ({ id, title, icon, image, description, link }) => {
   const navigate = useNavigate();
   const { selectPlatform } = usePlatform();
-  
+
   const renderIcon = () => {
-    switch(icon) {
+    switch (icon) {
       case 'FaStethoscope': return <FaStethoscope />;
       case 'FaGamepad': return <FaGamepad />;
       default: return null;
@@ -33,7 +33,7 @@ const Card = ({ id, title, icon, image, description, link }) => {
         </div>
         <p className="card-desc">{description}</p>
         <div className="card-action">
-          Enter Infrastructure <FaArrowRight />
+          Explore More <FaArrowRight />
         </div>
       </div>
     </div>
