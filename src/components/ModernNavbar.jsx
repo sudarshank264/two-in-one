@@ -16,8 +16,7 @@ const ModernNavbar = ({ brandName, basePath }) => {
     { title: 'About', path: `${basePath}/about` },
     { title: 'Services', path: `${basePath}/services` },
     ...(basePath === '/play-zone' ? [{ title: 'Activities', path: `${basePath}/activities` }] : []),
-    { title: 'Gallery', path: `${basePath}/gallery` },
-    ...(basePath === '/doctor' ? [{ title: 'Blogs', path: `${basePath}/blogs` }] : [])
+    { title: 'Gallery', path: `${basePath}/gallery` }
   ];
 
   return (
@@ -69,7 +68,7 @@ const ModernNavbar = ({ brandName, basePath }) => {
                 window.dispatchEvent(event);
               }}
             >
-              Book Appointment
+              {basePath === '/play-zone' ? 'Book Visit' : 'Book Appointment'}
             </button>
           </li>
         </ul>

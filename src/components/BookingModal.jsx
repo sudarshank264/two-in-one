@@ -8,10 +8,9 @@ const BookingModal = ({ basePath }) => {
   const [services, setServices] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    age: '',
     phone: '',
-    service: '',
-    message: ''
+    service: ''
   });
   const [status, setStatus] = useState({ type: '', msg: '' });
 
@@ -50,7 +49,7 @@ const BookingModal = ({ basePath }) => {
       setTimeout(() => {
         setIsOpen(false);
         setStatus({ type: '', msg: '' });
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+        setFormData({ name: '', age: '', phone: '', service: '' });
       }, 3000);
     } catch (error) {
       console.error(error);
@@ -77,25 +76,25 @@ const BookingModal = ({ basePath }) => {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Name*</label>
+            <label>{basePath === '/play-zone' ? 'Kid Name*' : 'Name*'}</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your name"
+              placeholder={basePath === '/play-zone' ? "Enter kid's name" : "Enter your name"}
               required
             />
           </div>
 
           <div className="form-group">
-            <label>Email*</label>
+            <label>Age*</label>
             <input
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="age"
+              value={formData.age || ''}
               onChange={handleChange}
-              placeholder="Enter your email"
+              placeholder="Enter age (e.g. 5 years)"
               required
             />
           </div>
@@ -108,35 +107,24 @@ const BookingModal = ({ basePath }) => {
               value={formData.phone}
               onChange={handleChange}
               placeholder="Enter your phone number"
+              pattern="[0-9+\-\s()]+"
               required
             />
           </div>
 
-          <div className="form-group">
-            <label>Services*</label>
-            <select name="service" value={formData.service} onChange={handleChange} required>
-              <option value="">Select Service</option>
-              {services.map(s => (
-                <option key={s._id} value={s.title}>{s.title}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label>Message</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Write your message..."
-              rows="4"
-            ></textarea>
-          </div>
+          {basePath === '/doctor' && (
+            <div className="form-group">
+              <label>Services*</label>
+              <select name="service" value={formData.service} onChange={handleChange} required>
+                <option value="">Select Service</option>
+                {services.map(s => (
+                  <option key={s._id} value={s.title}>{s.title}</option>
+                ))}
+              </select>
+            </div>
+          )}
 
           <button type="submit" className="booking-submit-btn" disabled={status.type === 'loading'}>
-            {/* <span style={{ background: 'green', borderRadius: '50%', width: '24px', height: '24px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginRight: '10px' }}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--doc-primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="9 5 19 5 19 15"></polyline></svg>
-            </span> */}
             Submit
           </button>
         </form>

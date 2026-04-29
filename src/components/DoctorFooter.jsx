@@ -33,7 +33,6 @@ const DoctorFooter = ({ brandName, description, address, phone, email }) => {
             <li><Link to="/doctor"><FaChevronRight className="link-icon" /> Home</Link></li>
             <li><Link to="/doctor/about"><FaChevronRight className="link-icon" /> About</Link></li>
             <li><Link to="/doctor/services"><FaChevronRight className="link-icon" /> Services</Link></li>
-            <li><Link to="/doctor/blogs"><FaChevronRight className="link-icon" /> Blogs</Link></li>
             <li><Link to="/doctor"><FaChevronRight className="link-icon" /> Contact</Link></li>
           </ul>
         </div>
@@ -78,6 +77,27 @@ const DoctorFooter = ({ brandName, description, address, phone, email }) => {
                   {phone || '+91 98765 43210'}
                 </a>
               </div>
+            </div>
+            <div style={{ marginTop: '1.5rem' }}>
+              <a 
+                href="https://www.google.com/maps/dir/?api=1&destination=4th+Floor,+Physio+Care,+Orbit+Plaza,+Unit+-+405,+Crossings+Republik,+Ghaziabad,+Uttar+Pradesh+201016" 
+                target="_blank" 
+                rel="noreferrer" 
+                style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  padding: '10px 20px', 
+                  borderRadius: '5px', 
+                  textDecoration: 'none', 
+                  background: 'var(--doc-primary)', 
+                  color: 'white',
+                  fontWeight: '600',
+                  fontSize: '0.9rem'
+                }}
+              >
+                <FaMapMarkerAlt /> Get Directions
+              </a>
             </div>
           </div>
         </div>

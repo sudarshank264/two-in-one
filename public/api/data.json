@@ -2,18 +2,32 @@
   "homeCards": [
     {
       "id": "doctor",
-      "title": "Dr. Preeti Choudhary (Physiotherapist)",
-      "icon": "FaStethoscope",
-      "image": "https://thumbs.dreamstime.com/b/beautiful-girl-doctor-white-coat-working-medical-equipment-65122323.jpg",
-      "description": "Dr. Preeti Choudhary is a Physiotherapist in Crossings Republik, Ghaziabad and has an experience of 13 years in this field. ",
+      "themeClass": "doc",
+      "iconEmoji": "🩺",
+      "title": "Dr. Preeti Choudhary",
+      "description": "Expert physiotherapist in Ghaziabad with 13+ years experience.",
+      "stats": [
+        { "val": "13+", "label": "Years" },
+        { "val": "500+", "label": "Patients" },
+        { "val": "4.9★", "label": "Rated" }
+      ],
+      "btnText": "Book Visit",
+      "label": "Healthcare Portal",
       "link": "/doctor"
     },
     {
       "id": "play-zone",
+      "themeClass": "play",
+      "iconEmoji": "🎉",
       "title": "Lets Play Zone",
-      "icon": "FaGamepad",
-      "image": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=800",
-      "description": "Premium birthday party place and game zone with 30+ fun activities for kids.A perfect destination for fun, laughter, and unforgettable memories",
+      "description": "Premium birthday parties & 30+ fun activities for kids.",
+      "stats": [
+        { "val": "30+", "label": "Activities" },
+        { "val": "5K+", "label": "Parties" },
+        { "val": "4.8★", "label": "Rated" }
+      ],
+      "btnText": "Book Party",
+      "label": "Play Zone Portal",
       "link": "/play-zone"
     }
   ],

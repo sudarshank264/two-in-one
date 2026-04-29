@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Clock } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import './Home.css';
 import logo from './assets/physio-care-logo.svg';
 
 export default function BookAppointment() {
   return (
     <div className="app-wrapper">
-      
-      {/* 1. TOP BAR */}
+
+      {/* TOP BAR */}
       <div className="top-bar">
         <div className="container top-bar-inner">
           <div className="top-left">
-            <span><MapPin size={14}/> Gorakhpur, Uttar Pradesh</span>
+            <span><MapPin size={14} /> Gorakhpur, Uttar Pradesh</span>
           </div>
           <div className="top-right">
             <span>Help Desk: +91 98765 43210</span>
@@ -19,24 +19,30 @@ export default function BookAppointment() {
         </div>
       </div>
 
-      {/* 2. NAVBAR */}
+      {/* NAVBAR */}
       <div className="navbar-wrapper">
         <nav className="navbar">
-          <div className="brand"><Link to="/"><img src={logo} alt="Logo" className="logo-img" /></Link></div>
+          <div className="brand">
+            <Link to="/">
+              <img src={logo} alt="Logo" className="logo-img" />
+            </Link>
+          </div>
+
           <ul className="nav-links">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/services">Services</Link></li>
-            <li><Link to="/blogs">Blogs</Link></li>
             <li><Link to="/gallery">Gallery</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
-          {/* Note: This button is already active since we are on the page */}
-          <Link to="/doctor/book-appointment" className="btn-primary btn-round">Book Appointment</Link>
+
+          <Link to="/doctor/book-appointment" className="btn-primary btn-round">
+            Book Appointment
+          </Link>
         </nav>
       </div>
 
-      {/* 3. IMAGE BANNER HEADER */}
+      {/* HEADER */}
       <div className="internal-header booking-header-bg">
         <div className="container">
           <h1>Book an Appointment</h1>
@@ -44,30 +50,40 @@ export default function BookAppointment() {
         </div>
       </div>
 
-      {/* 4. BOOKING FORM SECTION */}
+      {/* FORM */}
       <section className="booking-section">
         <div className="container">
           <div className="booking-card">
+
             <div style={{ textAlign: 'center', marginBottom: '40px' }}>
               <span className="subtitle">SCHEDULE A VISIT</span>
-              <h2 style={{ color: 'var(--clr-dark)' }}>Request Your Consultation</h2>
-              <p>Fill out the form below and our team will contact you to confirm your appointment time.</p>
+              <h2 style={{ color: 'var(--clr-dark)' }}>
+                Request Your Consultation
+              </h2>
+              <p>
+                Fill out the form below and our team will contact you.
+              </p>
             </div>
 
             <form onSubmit={(e) => e.preventDefault()}>
+
               <div className="form-grid">
+
                 <div className="form-group">
                   <label>Full Name *</label>
-                  <input type="text" className="form-control" placeholder="John Doe" required />
+                  <input type="text" className="form-control" required />
                 </div>
+
                 <div className="form-group">
-                  <label>Email Address *</label>
-                  <input type="email" className="form-control" placeholder="john@example.com" required />
+                  <label>Age *</label>
+                  <input type="number" className="form-control" required />
                 </div>
+
                 <div className="form-group">
                   <label>Phone Number *</label>
-                  <input type="tel" className="form-control" placeholder="+91 98765 43210" required />
+                  <input type="tel" className="form-control" required />
                 </div>
+
                 <div className="form-group">
                   <label>Select Service *</label>
                   <select className="form-control" required>
@@ -79,15 +95,15 @@ export default function BookAppointment() {
                     <option value="pain-management">Pain Management Therapy</option>
                   </select>
                 </div>
-              </div>
-              
-              <div className="form-group" style={{ marginBottom: '20px' }}>
-                <label>Additional Message / Symptoms</label>
-                <textarea className="form-control" placeholder="Briefly describe what you need help with..."></textarea>
+
               </div>
 
-              <button type="submit" className="btn-submit">Submit Appointment Request</button>
+              <button type="submit" className="btn-submit">
+                Submit Appointment Request
+              </button>
+
             </form>
+
           </div>
         </div>
       </section>

@@ -48,7 +48,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           Doctor
         </li>
         <NavItem path="/admin/doctor/settings" name="Settings" icon={<FiSettings />} />
-        <NavItem path="/admin/doctor/blogs" name="Blogs" icon={<FiFileText />} />
         <NavItem path="/admin/doctor/services" name="Services" icon={<FiActivity />} />
         <NavItem path="/admin/doctor/gallery" name="Gallery" icon={<FiImage />} />
 

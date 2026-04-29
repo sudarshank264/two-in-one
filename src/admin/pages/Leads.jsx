@@ -32,6 +32,17 @@ const Leads = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure you want to delete this lead?')) {
+      try {
+        await api.delete(`/leads/${id}`);
+        setLeads(leads.filter(lead => lead._id !== id));
+      } catch (error) {
+        console.error('Error deleting lead:', error);
+      }
+    }
+  };
+
   const filteredLeads = leads.filter(lead => {
     if (filter === 'all') return true;
     return lead.source === filter;
@@ -70,7 +81,7 @@ const Leads = () => {
             <tr>
               <th>Date</th>
               <th>Source</th>
-              <th>Name</th>
+              <th>Name / Kid Name</th>
               <th>Contact Info</th>
               <th>Service</th>
               <th>Status</th>
@@ -104,7 +115,7 @@ const Leads = () => {
                   </td>
                   <td style={{ fontWeight: '500' }}>{lead.name}</td>
                   <td>
-                    <div style={{ fontSize: '0.9rem' }}>{lead.email}</div>
+                    {lead.age && <div style={{ fontSize: '0.9rem' }}>Age: {lead.age}</div>}
                     <div style={{ fontSize: '0.9rem', color: 'var(--admin-text-muted)' }}>{lead.phone}</div>
                   </td>
                   <td>{lead.service}</td>
@@ -124,12 +135,19 @@ const Leads = () => {
                       <option value="resolved">Resolved</option>
                     </select>
                   </td>
-                  <td>
+                  <td style={{ display: 'flex', gap: '8px' }}>
                     <button 
                       className="admin-btn admin-btn-secondary"
                       onClick={() => alert(`Message: ${lead.message || 'No message provided'}`)}
                     >
                       View Msg
+                    </button>
+                    <button 
+                      className="admin-btn admin-btn-secondary"
+                      style={{ backgroundColor: '#fee2e2', color: '#991b1b', borderColor: '#fca5a5' }}
+                      onClick={() => handleDelete(lead._id)}
+                    >
+                      Delete
                     </button>
                   </td>
                 </tr>

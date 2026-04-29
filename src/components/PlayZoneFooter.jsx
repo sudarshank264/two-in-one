@@ -78,7 +78,30 @@ const PlayZoneFooter = ({ brandName, description, address, phone, email }) => {
             </div>
           </div>
           
-          
+          <div style={{ marginTop: '1.5rem' }}>
+            <a 
+              href="https://www.google.com/maps/dir/?api=1&destination=Ground+Floor,+Saviour+Street,+30,+Crossings+Republik,+Uttar+Pradesh+201016" 
+              target="_blank" 
+              rel="noreferrer" 
+              style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '8px', 
+                padding: '12px 24px', 
+                borderRadius: '50px', 
+                textDecoration: 'none', 
+                background: 'var(--pz-primary)', 
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: '1rem',
+                boxShadow: '0 4px 15px rgba(245, 158, 11, 0.3)',
+                transition: 'all 0.3s ease'
+              }}
+              className="pz-btn-directions"
+            >
+              <FaMapMarkerAlt /> Get Directions
+            </a>
+          </div>
         </div>
       </div>
 

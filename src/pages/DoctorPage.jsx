@@ -30,15 +30,13 @@ const DoctorPage = () => {
 
   const fetchData = async () => {
     try {
-      const [settingsRes, servicesRes, blogsRes, galleryRes] = await Promise.all([
+      const [settingsRes, servicesRes, galleryRes] = await Promise.all([
         api.get('/about'),
         api.get('/services'),
-        api.get('/blogs'),
         api.get('/gallery')
       ]);
       setSettings(settingsRes.data);
       setServices(servicesRes.data || []);
-      setBlogs(blogsRes.data || []);
       setGallery(galleryRes.data || []);
     } catch (error) {
       console.error('Error fetching data:', error);

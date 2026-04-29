@@ -1,19 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaStethoscope, FaGamepad, FaArrowRight } from 'react-icons/fa';
 import { usePlatform } from '../context/PlatformContext';
 
-const Card = ({ id, title, icon, image, description, link }) => {
+const Card = ({ id, title, iconEmoji, description, stats, btnText, label, link, themeClass }) => {
   const navigate = useNavigate();
   const { selectPlatform } = usePlatform();
-
-  const renderIcon = () => {
-    switch (icon) {
-      case 'FaStethoscope': return <FaStethoscope />;
-      case 'FaGamepad': return <FaGamepad />;
-      default: return null;
-    }
-  };
 
   const handleCardClick = (e) => {
     e.preventDefault();
@@ -22,20 +13,28 @@ const Card = ({ id, title, icon, image, description, link }) => {
   };
 
   return (
-    <div onClick={handleCardClick} className="card" style={{ cursor: 'pointer' }}>
-      <div className="card-img-wrapper">
-        <img src={image} alt={title} className="card-img" />
+    <div className={`d13-blob-unit ${themeClass}`}>
+      <div className="d13-blob">
+        <div className="d13-blob-icon">{iconEmoji}</div>
+        <div className="d13-blob-title">{title}</div>
+        <p className="d13-blob-desc">
+          {description}
+        </p>
+
+        {stats && (
+          <div className="d13-blob-stats">
+            {stats.map((stat, index) => (
+              <div key={index}>
+                <span className="d13-bstat-val">{stat.val}</span><br />
+                {stat.label}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <button className="d13-blob-btn" onClick={handleCardClick}>{btnText}</button>
       </div>
-      <div className="card-content">
-        <div className="card-header">
-          <span className="card-icon">{renderIcon()}</span>
-          <h3 className="card-title">{title}</h3>
-        </div>
-        <p className="card-desc">{description}</p>
-        <div className="card-action">
-          Explore More <FaArrowRight />
-        </div>
-      </div>
+      <div className="d13-blob-label">{label}</div>
     </div>
   );
 };

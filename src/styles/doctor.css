@@ -1,4 +1,4 @@
-﻿/* â”€â”€ Doctor Site Styles (Rehab Maxx Inspiration) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ Doctor Site Styles (Rehab Maxx Inspiration) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 /* Force clean medical theme when in doctor context */
 body.theme-doctor {
@@ -20,12 +20,16 @@ body.theme-doctor::after {
 
 /* Color Variables for Doctor Theme */
 .theme-doctor {
-  --doc-primary: #38A3A5;
-  /* Teal */
-  --doc-primary-dark: #22577A;
-  /* Navy/Deep Teal */
-  --doc-accent: #57CC99;
-  /* Light Green */
+  --doc-primary: #12C2E9;
+  /* Cyan / Light Blue */
+  --doc-secondary: #C62283;
+  /* Magenta / Pink */
+  --doc-primary-dark: #0E98B5;
+  /* Darker Cyan */
+  --doc-secondary-dark: #9A1A66;
+  /* Darker Magenta */
+  --doc-accent: #C62283;
+  /* Pink accent */
   --doc-bg: #FFFFFF;
   --doc-surface: #F8F9FA;
   --doc-text: #2D3748;
@@ -67,7 +71,7 @@ body.theme-doctor::after {
 /* â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .theme-doctor .doc-btn {
   display: inline-block;
-  background-color: var(--doc-primary);
+  background: linear-gradient(90deg, var(--doc-primary), var(--doc-secondary));
   color: #fff;
   padding: 12px 28px;
   border-radius: 30px;
@@ -78,13 +82,13 @@ body.theme-doctor::after {
   border: 2px solid transparent;
   cursor: pointer;
   text-decoration: none;
+  background-size: 200% auto;
 }
 
 .theme-doctor .doc-btn:hover {
-  background-color: transparent;
-  color: var(--doc-primary);
-  border-color: var(--doc-primary);
-  box-shadow: 0 4px 15px rgba(56, 163, 165, 0.3);
+  background-position: right center;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(198, 34, 131, 0.4);
 }
 
 .theme-doctor .doc-btn-outline {
@@ -127,7 +131,7 @@ body.theme-doctor::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(34, 87, 122, 0.85) 0%, rgba(56, 163, 165, 0.6) 100%);
+  background: linear-gradient(90deg, rgba(18, 194, 233, 0.85) 0%, rgba(198, 34, 131, 0.6) 100%);
   z-index: 1;
 }
 
@@ -192,7 +196,7 @@ body.theme-doctor::after {
   position: absolute;
   bottom: -20px;
   right: 20px;
-  background-color: var(--doc-primary);
+  background: linear-gradient(135deg, var(--doc-primary), var(--doc-secondary));
   color: white;
   padding: 20px;
   border-radius: 50%;
@@ -203,7 +207,7 @@ body.theme-doctor::after {
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 10px 20px rgba(56, 163, 165, 0.4);
+  box-shadow: 0 10px 20px rgba(18, 194, 233, 0.4);
   z-index: 2;
   border: 5px solid white;
 }
@@ -255,7 +259,7 @@ body.theme-doctor::after {
 .theme-doctor .doc-service-icon {
   width: 60px;
   height: 60px;
-  background-color: rgba(56, 163, 165, 0.1);
+  background-color: rgba(18, 194, 233, 0.1);
   color: var(--doc-primary);
   border-radius: 50%;
   display: flex;
@@ -423,16 +427,18 @@ body.theme-doctor::after {
 }
 
 .theme-doctor .nav-book-btn {
-  background-color: var(--doc-primary) !important;
+  background: linear-gradient(90deg, var(--doc-primary), var(--doc-secondary)) !important;
   color: white !important;
   border-radius: 30px !important;
   padding: 8px 20px !important;
   font-weight: 600 !important;
   border: none !important;
+  background-size: 200% auto !important;
+  transition: all 0.3s ease !important;
 }
 
 .theme-doctor .nav-book-btn:hover {
-  background-color: var(--doc-primary-dark) !important;
+  background-position: right center !important;
 }
 
 .theme-doctor .hamburger {
@@ -520,7 +526,7 @@ body.theme-doctor::after {
 }
 
 .theme-doctor .doc-faq-left h3 {
-  color: #38A3A5;
+  color: var(--doc-secondary);
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 1px;
@@ -535,7 +541,7 @@ body.theme-doctor::after {
   display: inline-block;
   width: 40px;
   height: 2px;
-  background-color: #38A3A5;
+  background-color: var(--doc-secondary);
 }
 
 .theme-doctor .doc-faq-left h2 {
@@ -546,7 +552,7 @@ body.theme-doctor::after {
 }
 
 .theme-doctor .doc-faq-left h2 span {
-  color: #38A3A5;
+  color: var(--doc-primary);
 }
 
 .theme-doctor .doc-faq-img {

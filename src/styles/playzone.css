@@ -1,9 +1,17 @@
 /* Play Zone Styles - Scoped under .theme-playzone */
 
 .theme-playzone {
-  --pz-primary: #FF4C60; /* Vibrant Coral Red */
-  --pz-secondary: #FFB400; /* Warm Yellow */
-  --pz-tertiary: #4ECDC4; /* Mint Teal */
+  --pz-red: #E31A22;
+  --pz-orange: #F37A20;
+  --pz-yellow: #FFC72C;
+  --pz-green: #2AA958;
+  --pz-blue: #3C93EA;
+  --pz-cyan: #1BB4B9;
+  --pz-pink: #EE2A7B;
+  
+  --pz-primary: var(--pz-orange);
+  --pz-secondary: var(--pz-blue);
+  --pz-tertiary: var(--pz-green);
   --pz-bg: #FAFAFA; /* Off-white for premium clean look */
   --pz-text: #2D3142; /* Dark Navy-ish text */
   --pz-light: #FFFFFF; /* Pure White */
@@ -96,9 +104,9 @@
 
 .pz-btn:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(255, 76, 96, 0.5);
-  background: #ff5e70;
-  color: #FFFFFF;
+  box-shadow: 0 12px 25px rgba(243, 122, 32, 0.5);
+  background: var(--pz-yellow);
+  color: var(--pz-text);
 }
 
 .pz-btn.pz-btn-outline {
@@ -168,9 +176,16 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, var(--pz-primary), var(--pz-secondary));
+  height: 6px;
+  background: var(--pz-primary);
 }
+
+.pz-activity-card:nth-child(1n)::before { background: var(--pz-red); }
+.pz-activity-card:nth-child(2n)::before { background: var(--pz-yellow); }
+.pz-activity-card:nth-child(3n)::before { background: var(--pz-green); }
+.pz-activity-card:nth-child(4n)::before { background: var(--pz-blue); }
+.pz-activity-card:nth-child(5n)::before { background: var(--pz-orange); }
+.pz-activity-card:nth-child(6n)::before { background: var(--pz-cyan); }
 
 .pz-activity-card:hover {
   transform: translateY(-10px);
@@ -232,7 +247,7 @@
 
 /* About Section */
 .pz-about {
-  background: linear-gradient(135deg, rgba(255, 76, 96, 0.03) 0%, rgba(78, 205, 196, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(227, 26, 34, 0.03) 0%, rgba(27, 180, 185, 0.05) 100%);
 }
 
 .pz-about-container {
@@ -285,7 +300,15 @@
   box-shadow: var(--pz-shadow);
   transition: all 0.3s ease;
   border: 1px solid rgba(0,0,0,0.02);
+  border-top: 5px solid var(--pz-primary);
 }
+
+.pz-service-item:nth-child(1n) { border-top-color: var(--pz-red); }
+.pz-service-item:nth-child(2n) { border-top-color: var(--pz-yellow); }
+.pz-service-item:nth-child(3n) { border-top-color: var(--pz-green); }
+.pz-service-item:nth-child(4n) { border-top-color: var(--pz-blue); }
+.pz-service-item:nth-child(5n) { border-top-color: var(--pz-orange); }
+.pz-service-item:nth-child(6n) { border-top-color: var(--pz-cyan); }
 
 .pz-service-item:hover {
   transform: translateY(-10px);
@@ -297,13 +320,19 @@
 .pz-service-icon {
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
-  color: var(--pz-tertiary);
+  color: var(--pz-primary);
   transition: transform 0.3s ease;
 }
 
+.pz-service-item:nth-child(1n) .pz-service-icon { color: var(--pz-red); }
+.pz-service-item:nth-child(2n) .pz-service-icon { color: var(--pz-yellow); }
+.pz-service-item:nth-child(3n) .pz-service-icon { color: var(--pz-green); }
+.pz-service-item:nth-child(4n) .pz-service-icon { color: var(--pz-blue); }
+.pz-service-item:nth-child(5n) .pz-service-icon { color: var(--pz-orange); }
+.pz-service-item:nth-child(6n) .pz-service-icon { color: var(--pz-cyan); }
+
 .pz-service-item:hover .pz-service-icon {
   transform: scale(1.1);
-  color: var(--pz-primary);
 }
 
 .pz-service-item h4 {
@@ -407,15 +436,25 @@
   justify-content: center;
   margin: 0 auto 1.5rem;
   font-size: 2.5rem;
-  color: var(--pz-secondary);
+  color: var(--pz-primary);
   transition: transform 0.4s ease;
 }
 
+.pz-feature-box:nth-child(1n) .pz-feature-icon { color: var(--pz-red); }
+.pz-feature-box:nth-child(2n) .pz-feature-icon { color: var(--pz-yellow); }
+.pz-feature-box:nth-child(3n) .pz-feature-icon { color: var(--pz-green); }
+.pz-feature-box:nth-child(4n) .pz-feature-icon { color: var(--pz-blue); }
+
 .pz-feature-box:hover .pz-feature-icon {
   transform: rotate(360deg);
-  background: var(--pz-secondary);
+  background: var(--pz-primary);
   color: var(--pz-text);
 }
+
+.pz-feature-box:nth-child(1n):hover .pz-feature-icon { background: var(--pz-red); }
+.pz-feature-box:nth-child(2n):hover .pz-feature-icon { background: var(--pz-yellow); }
+.pz-feature-box:nth-child(3n):hover .pz-feature-icon { background: var(--pz-green); }
+.pz-feature-box:nth-child(4n):hover .pz-feature-icon { background: var(--pz-blue); }
 
 .pz-feature-box h4 {
   font-size: 1.4rem;

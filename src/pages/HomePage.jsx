@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchSiteData } from '../services/apiService';
 import Card from '../components/Card';
 import { usePlatform } from '../context/PlatformContext';
+import '../styles/BlobCards.css';
 
 const HomePage = () => {
   const [cards, setCards] = useState([]);
@@ -35,20 +36,17 @@ const HomePage = () => {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--background-light)' }}>
-      <section className="hero">
-        <div className="hero-content">
-          <h1 className="hero-title">Select Your Gateway</h1>
-          <p className="hero-subtitle">
-            Welcome to the main portal. From here, you can enter fully isolated website environments. Navigation between them is strictly contained.
-          </p>
-        </div>
-        <div className="cards-container">
-          {Array.isArray(cards) && cards.map((card) => (
-            <Card key={card.id} {...card} />
-          ))}
-        </div>
-      </section>
+    <div className="d13-page">
+      <div className="d13-header">
+        <h1>Where Care <br /><span className="wave">Meets Joy</span></h1>
+        <p className="d13-sub">Two thoughtfully crafted spaces — one for healing, one for happiness.</p>
+      </div>
+
+      <div className="d13-cards">
+        {Array.isArray(cards) && cards.map((card) => (
+          <Card key={card.id} {...card} />
+        ))}
+      </div>
     </div>
   );
 };
