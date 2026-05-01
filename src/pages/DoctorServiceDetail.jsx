@@ -1,3 +1,4 @@
+import { getImageUrl } from '../utils/imageUrl';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ModernNavbar from '../components/ModernNavbar';
@@ -45,14 +46,13 @@ const DoctorServiceDetail = () => {
   }
 
   const d = settings || {};
-  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
 
   return (
     <div style={{ background: 'var(--background-light)', minHeight: '100vh' }}>
       <ModernNavbar brandName={d.aboutTitle || "Physio Care"} basePath="/doctor" />
       
       <section className="page-hero" style={{ height: '400px' }}>
-        <img src={baseUrl + service.image} alt={service.title} className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
+        <img src={getImageUrl(service.image)} alt={service.title} className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
         <h1 className="page-hero-title">{service.title}</h1>
       </section>
 
@@ -70,7 +70,10 @@ const DoctorServiceDetail = () => {
           </p>
 
           <div className="text-center">
-            <button style={{ padding: '15px 40px', fontSize: '1.1rem', fontWeight: '600', color: 'white', background: 'var(--primary-color)', border: 'none', borderRadius: '8px', cursor: 'pointer', transition: 'background 0.3s' }}>
+            <button 
+              onClick={() => window.dispatchEvent(new CustomEvent('openBookingModal'))}
+              style={{ padding: '15px 40px', fontSize: '1.1rem', fontWeight: '600', color: 'white', background: 'var(--primary-color)', border: 'none', borderRadius: '8px', cursor: 'pointer', transition: 'background 0.3s' }}
+            >
               Book an Appointment
             </button>
           </div>

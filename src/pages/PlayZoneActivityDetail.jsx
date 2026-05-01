@@ -1,3 +1,4 @@
+import { getImageUrl } from '../utils/imageUrl';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -47,14 +48,14 @@ const PlayZoneActivityDetail = () => {
   }
 
   const d = settings || {};
-  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
+
 
   return (
     <div style={{ background: '#fff9e6', minHeight: '100vh' }}>
-      <ModernNavbar brandName={d.aboutTitle || "Lets Play Zone"} basePath="/play-zone" />
+      <ModernNavbar brandName={d.aboutTitle || "Let's Play Zone"} basePath="/play-zone" />
       
       <section className="page-hero" style={{ height: '400px' }}>
-        <img src={baseUrl + activity.image} alt={activity.title} className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
+        <img src={getImageUrl(activity.image)} alt={activity.title} className="page-hero-img" style={{filter: 'brightness(0.6)'}} />
         <motion.h1 
           className="page-hero-title"
           initial={{ y: 30, opacity: 0 }}
@@ -96,7 +97,7 @@ const PlayZoneActivityDetail = () => {
         </motion.div>
       </section>
 
-      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
+      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Let's Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };

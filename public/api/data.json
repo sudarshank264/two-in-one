@@ -19,7 +19,7 @@
       "id": "play-zone",
       "themeClass": "play",
       "iconEmoji": "🎉",
-      "title": "Lets Play Zone",
+      "title": "Let's Play Zone",
       "description": "Premium birthday parties & 30+ fun activities for kids.",
       "stats": [
         { "val": "30+", "label": "Activities" },
@@ -56,9 +56,9 @@
     }
   },
   "playZonePage": {
-    "title": "Lets Play Zone - Kids Play Area & Game Zone",
+    "title": "Let's Play Zone - Kids Play Area & Game Zone",
     "heroImage": "https://images.unsplash.com/photo-1560416345-0d0ddc1ee9ea?auto=format&fit=crop&q=80&w=1200",
-    "about": "Childhood is meant for playing as much as you can. Lets Play Zone is the happy place for your little ones to explore their fantasy world. We offer ample space with 30+ games, an attached cafe, and hygienic environment.",
+    "about": "Childhood is meant for playing as much as you can. Let's Play Zone is the happy place for your little ones to explore their fantasy world. We offer ample space with 30+ games, an attached cafe, and hygienic environment.",
     "services": [
       {
         "title": "Birthday Parties",

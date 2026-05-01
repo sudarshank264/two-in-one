@@ -1,3 +1,4 @@
+import { getImageUrl } from '../../utils/imageUrl';
 import React, { useState, useEffect } from 'react';
 import api from '../utils/api';
 import { FiEdit, FiTrash2, FiPlus } from 'react-icons/fi';
@@ -96,7 +97,7 @@ const PlayZoneActivities = () => {
             {activities.map(act => (
               <tr key={act._id} style={{ borderBottom: '1px solid #e5e7eb' }}>
                 <td style={{ padding: '1rem' }}>
-                  <img src={(import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '') + act.image} alt={act.title} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }} />
+                  <img src={getImageUrl(act.image)} alt={act.title} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }} />
                 </td>
                 <td style={{ padding: '1rem', fontWeight: 'bold' }}>{act.title}</td>
                 <td style={{ padding: '1rem', color: '#6b7280' }}>{act.description.substring(0, 50)}...</td>

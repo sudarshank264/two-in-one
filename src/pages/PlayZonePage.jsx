@@ -1,3 +1,4 @@
+import { getImageUrl } from '../utils/imageUrl';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -53,13 +54,13 @@ const PlayZonePage = () => {
   if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
 
   const d = settings || {};
-  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
+
 
   return (
     <div>
-      <ModernNavbar brandName={d.aboutTitle || "Lets Play Zone"} basePath="/play-zone" />
+      <ModernNavbar brandName={d.aboutTitle || "Let's Play Zone"} basePath="/play-zone" />
 
-      <section className="pz-hero" style={{ backgroundImage: `url(${baseUrl + d.heroImage})` }}>
+      <section className="pz-hero" style={{ backgroundImage: `url(${getImageUrl(d.heroImage)})` }}>
         <motion.div className="pz-hero-content" initial="hidden" animate="visible" variants={fadeUp}>
           <h1>{d.heroTitle || 'Welcome to Play Zone!'}</h1>
           <p>{d.heroSubtitle}</p>
@@ -77,7 +78,7 @@ const PlayZonePage = () => {
           {activities.slice(0, 3).map((act) => (
             <motion.div key={act._id} className="pz-activity-card" variants={fadeUp}>
               <div className="pz-activity-img-wrap">
-                <img src={baseUrl + act.image} alt={act.title} className="pz-activity-img" />
+                <img src={getImageUrl(act.image)} alt={act.title} className="pz-activity-img" />
               </div>
               <div className="pz-activity-content">
                 <h3>{act.title}</h3>
@@ -105,7 +106,7 @@ const PlayZonePage = () => {
             {services.slice(0, 3).map((svc) => (
               <motion.div key={svc._id} className="pz-activity-card" variants={fadeUp}>
                 <div className="pz-activity-img-wrap">
-                  <img src={baseUrl + svc.image} alt={svc.title} className="pz-activity-img" />
+                  <img src={getImageUrl(svc.image)} alt={svc.title} className="pz-activity-img" />
                 </div>
                 <div className="pz-activity-content">
                   <h3>{svc.title}</h3>
@@ -145,7 +146,7 @@ const PlayZonePage = () => {
           <div className="pz-gallery-grid">
             {gallery.slice(0, 6).map((item) => (
               <div key={item._id} className="pz-gallery-item">
-                <img src={baseUrl + item.image} alt={item.altText || 'Gallery Image'} />
+                <img src={getImageUrl(item.image)} alt={item.altText || 'Gallery Image'} />
                 <div className="pz-gallery-item-title">
                   {item.altText || 'Gallery Image'}
                 </div>
@@ -169,7 +170,7 @@ const PlayZonePage = () => {
         </motion.div>
       </section>
 
-      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
+      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Let's Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };

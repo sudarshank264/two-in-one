@@ -1,3 +1,4 @@
+import { getImageUrl } from '../utils/imageUrl';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight, FaHeartbeat, FaBrain, FaStethoscope } from 'react-icons/fa';
@@ -36,13 +37,13 @@ const DoctorServices = () => {
   if (loading) return <div style={{textAlign: 'center', padding: '4rem', color: '#22577A'}}>Loading...</div>;
 
   const d = settings || {};
-  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
+
 
   return (
     <div>
       <ModernNavbar brandName={d.aboutTitle || "Physio Care"} basePath="/doctor" />
       
-      <div className="doc-hero" style={{ minHeight: '40vh', backgroundImage: `url(${d.heroImage ? baseUrl + d.heroImage : 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop'})` }}>
+      <div className="doc-hero" style={{ minHeight: '40vh', backgroundImage: `url(${d.heroImage ? getImageUrl(d.heroImage) : 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop'})` }}>
         <div className="doc-hero-overlay" style={{ background: 'linear-gradient(90deg, rgba(34, 87, 122, 0.9) 0%, rgba(56, 163, 165, 0.8) 100%)' }}></div>
         <div className="container doc-hero-content" style={{ textAlign: 'center', paddingTop: '4rem' }}>
           <h1 className="doc-hero-title">Our Services</h1>

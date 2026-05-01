@@ -1,3 +1,4 @@
+import { getImageUrl } from '../utils/imageUrl';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import ModernNavbar from '../components/ModernNavbar';
@@ -31,15 +32,15 @@ const PlayZoneAbout = () => {
   if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
 
   const d = settings || {};
-  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
+
 
   return (
     <div style={{ background: '#fff9e6', minHeight: '100vh' }}>
-      <ModernNavbar brandName={d.aboutTitle || "Lets Play Zone"} basePath="/play-zone" />
+      <ModernNavbar brandName={d.aboutTitle || "Let's Play Zone"} basePath="/play-zone" />
       
       <section className="page-hero" style={{ height: '300px' }}>
-        {d.aboutImage && <img src={baseUrl + d.aboutImage} alt="About PlayZone" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
-        <h1 className="page-hero-title">About Lets Play Zone</h1>
+        {d.aboutImage && <img src={getImageUrl(d.aboutImage)} alt="About PlayZone" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
+        <h1 className="page-hero-title">About Let's Play Zone</h1>
       </section>
 
       <section className="container content-section" style={{ maxWidth: '900px' }}>
@@ -55,7 +56,7 @@ const PlayZoneAbout = () => {
         </motion.div>
       </section>
 
-      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
+      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Let's Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { getImageUrl } from '../utils/imageUrl';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaStethoscope, FaHeartbeat, FaBrain, FaCheckCircle, FaChevronDown, FaChevronUp } from 'react-icons/fa';
@@ -49,7 +50,7 @@ const DoctorPage = () => {
   if (loading) return <div style={{textAlign: 'center', padding: '4rem', color: '#22577A'}}>Loading...</div>;
 
   const d = settings || {};
-  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
+
 
   return (
     <div>
@@ -58,7 +59,7 @@ const DoctorPage = () => {
       {/* ── Hero Section ── */}
       <section 
         className="doc-hero" 
-        style={{ backgroundImage: `url(${d.heroImage ? baseUrl + d.heroImage : 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop'})` }}
+        style={{ backgroundImage: `url(${d.heroImage ? getImageUrl(d.heroImage) : 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop'})` }}
       >
         <div className="doc-hero-overlay"></div>
         <div className="container doc-hero-content">
@@ -80,7 +81,7 @@ const DoctorPage = () => {
         <div className="doc-about-grid">
           <div className="doc-about-img-wrapper">
             <img 
-              src={d.aboutImage ? baseUrl + d.aboutImage : 'https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=2070&auto=format&fit=crop'} 
+              src={d.aboutImage ? getImageUrl(d.aboutImage) : 'https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=2070&auto=format&fit=crop'} 
               alt={d.aboutTitle || "About Us"} 
               className="doc-about-img"
             />
@@ -134,7 +135,7 @@ const DoctorPage = () => {
             {blogs.slice(0, 3).map((blog) => (
               <div key={blog._id} className="doc-service-card" style={{ display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
                 <img 
-                  src={baseUrl + blog.image} 
+                  src={getImageUrl(blog.image)} 
                   alt={blog.title} 
                   style={{ width: '100%', height: '180px', objectFit: 'cover' }} 
                 />
@@ -214,7 +215,7 @@ const DoctorPage = () => {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', maxWidth: '1200px', margin: '0 auto' }}>
             {gallery.slice(0, 4).map((item) => (
               <div key={item._id} style={{ borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
-                <img src={baseUrl + item.image} alt={item.altText} style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }} />
+                <img src={getImageUrl(item.image)} alt={item.altText} style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }} />
               </div>
             ))}
           </div>

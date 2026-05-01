@@ -1,3 +1,4 @@
+import { getImageUrl } from '../utils/imageUrl';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -46,14 +47,14 @@ const PlayZoneActivities = () => {
   if (loading) return <div style={{textAlign: 'center', padding: '4rem'}}>Loading...</div>;
 
   const d = settings || {};
-  const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace('/api', '');
+
 
   return (
     <div style={{ background: '#fff9e6', minHeight: '100vh' }}>
-      <ModernNavbar brandName={d.aboutTitle || "Lets Play Zone"} basePath="/play-zone" />
+      <ModernNavbar brandName={d.aboutTitle || "Let's Play Zone"} basePath="/play-zone" />
       
       <section className="page-hero" style={{ height: '300px' }}>
-        {d.heroImage && <img src={baseUrl + d.heroImage} alt="Activities Hero" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
+        {d.heroImage && <img src={getImageUrl(d.heroImage)} alt="Activities Hero" className="page-hero-img" style={{filter: 'brightness(0.6)'}} />}
         <h1 className="page-hero-title">All Activities</h1>
       </section>
 
@@ -66,7 +67,7 @@ const PlayZoneActivities = () => {
           {activities.map((act) => (
             <motion.div key={act._id} className="pz-activity-card" variants={fadeUp}>
               <div className="pz-activity-img-wrap">
-                <img src={baseUrl + act.image} alt={act.title} className="pz-activity-img" />
+                <img src={getImageUrl(act.image)} alt={act.title} className="pz-activity-img" />
               </div>
               <div className="pz-activity-content">
                 <h3>{act.title}</h3>
@@ -78,7 +79,7 @@ const PlayZoneActivities = () => {
         </motion.div>
       </section>
 
-      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Lets Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
+      <PlayZoneFooter phone={d?.contactPhone} email={d?.contactEmail} brandName={d.aboutTitle || "Let's Play Zone"} description={d.aboutText || d.text} address={d.contactAddress} />
     </div>
   );
 };

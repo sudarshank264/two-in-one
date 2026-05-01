@@ -32,7 +32,7 @@ const ModernNavbar = ({ brandName, basePath }) => {
               />
               <span style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--doc-primary-dark)', maxWidth: '250px', lineHeight: '1.2', whiteSpace: 'normal' }}>
 
-                Dr. Preeti Choudhary (Physiotherapist)
+                Dr. Preeti Choudhary (PT)
               </span>
             </>
           ) : (
