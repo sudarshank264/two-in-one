@@ -10,7 +10,6 @@ const ModernNavbar = ({ brandName, basePath }) => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Define Links dynamically based on the current app section
   const navLinks = [
     { title: 'Home', path: `${basePath}` },
     { title: 'About', path: `${basePath}/about` },
@@ -22,28 +21,38 @@ const ModernNavbar = ({ brandName, basePath }) => {
   return (
     <nav className="modern-navbar">
       <div className="container nav-content">
-        <Link to={basePath} className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+
+        {/* ✅ LOGO SECTION */}
+        <Link to={basePath} className="nav-brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+
           {basePath === '/doctor' ? (
             <>
-              <img
-                src="/physio-care-logo.png"
-                alt="Physio Care Logo"
-                style={{ height: '50px', objectFit: 'contain' }}
-              />
-              <span style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--doc-primary-dark)', maxWidth: '250px', lineHeight: '1.2', whiteSpace: 'normal' }}>
-
+              <img src="/physio-care-logo.png" alt="Physio Care Logo" style={{ height: '50px' }} />
+              <span style={{ fontSize: '1.2rem', fontWeight: '700' }}>
                 Dr. Preeti Choudhary (PT)
+              </span>
+            </>
+          ) : basePath === '/play-zone' ? (
+            <>
+              {/* ✅ YOUR LOGO */}
+              <img src="/playzone.jpeg" alt="Play Zone Logo" style={{ height: '50px' }} />
+              <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#f59e0b' }}>
+                Let’s Play Zone
               </span>
             </>
           ) : (
             brandName
           )}
+
         </Link>
 
+        {/* MENU */}
         <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
           {navLinks.map((link, index) => {
-            const isActive = location.pathname === link.path ||
+            const isActive =
+              location.pathname === link.path ||
               (link.path !== basePath && location.pathname.startsWith(link.path));
+
             return (
               <li key={index} className="nav-item">
                 <Link
@@ -56,16 +65,17 @@ const ModernNavbar = ({ brandName, basePath }) => {
               </li>
             );
           })}
+
           <li className="nav-item nav-buttons-container">
             <Link to="/" className="nav-back-btn">
               <FaArrowLeft size={12} /> Portal
             </Link>
+
             <button
               className="nav-book-btn"
               onClick={() => {
                 setIsOpen(false);
-                const event = new CustomEvent('openBookingModal');
-                window.dispatchEvent(event);
+                window.dispatchEvent(new CustomEvent('openBookingModal'));
               }}
             >
               {basePath === '/play-zone' ? 'Book Visit' : 'Book Appointment'}
@@ -73,10 +83,12 @@ const ModernNavbar = ({ brandName, basePath }) => {
           </li>
         </ul>
 
+        {/* MOBILE ICON */}
         <div className="menu-icon" onClick={toggleMenu}>
           {isOpen ? <FaTimes /> : <FaBars />}
         </div>
       </div>
+
       <BookingModal basePath={basePath} />
     </nav>
   );
