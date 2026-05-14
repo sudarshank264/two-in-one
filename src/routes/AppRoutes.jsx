@@ -14,6 +14,7 @@ import AdminProtectedRoute from '../admin/components/AdminProtectedRoute';
 import DoctorSettings from '../admin/pages/DoctorSettings';
 import DoctorServicesAdmin from '../admin/pages/DoctorServices';
 import DoctorGalleryAdmin from '../admin/pages/DoctorGallery';
+import VideoShowcaseAdmin from '../admin/pages/VideoShowcaseAdmin';
 
 // Admin Play Zone CRUD
 import PlayZoneSettings from '../admin/pages/PlayZoneSettings';
@@ -67,11 +68,13 @@ const AppRoutes = () => {
           
           {/* Doctor Admin Routes */}
           <Route path="doctor/settings" element={<DoctorSettings />} />
+          <Route path="doctor/video-showcase" element={<VideoShowcaseAdmin websiteType="doctor" />} />
           <Route path="doctor/services" element={<DoctorServicesAdmin />} />
           <Route path="doctor/gallery" element={<DoctorGalleryAdmin />} />
 
           {/* Play Zone Admin Routes */}
           <Route path="playzone/settings" element={<PlayZoneSettings />} />
+          <Route path="playzone/video-showcase" element={<VideoShowcaseAdmin websiteType="playzone" />} />
           <Route path="playzone/activities" element={<PlayZoneActivitiesAdmin />} />
           <Route path="playzone/services" element={<PlayZoneServicesAdmin />} />
           <Route path="playzone/gallery" element={<PlayZoneGalleryAdmin />} />

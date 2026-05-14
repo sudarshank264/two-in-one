@@ -35,10 +35,8 @@ const ModernNavbar = ({ brandName, basePath }) => {
           ) : basePath === '/play-zone' ? (
             <>
               {/* ✅ YOUR LOGO */}
-              <img src="/playzone.jpeg" alt="Play Zone Logo" style={{ height: '50px' }} />
-              <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#f59e0b' }}>
-                Let’s Play Zone
-              </span>
+              <img src="/playzone.jpg" alt="Play Zone Logo" style={{ height: '50px' }} />
+
             </>
           ) : (
             brandName

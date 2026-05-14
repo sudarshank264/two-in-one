@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaStethoscope, FaHeartbeat, FaBrain, FaCheckCircle, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import ModernNavbar from '../components/ModernNavbar';
 import DoctorFooter from '../components/DoctorFooter';
+import VideoShowcase from '../components/VideoShowcase';
 import api from '../admin/utils/api';
 import '../styles/doctor.css';
 
@@ -127,6 +128,9 @@ const DoctorPage = () => {
         </div>
       </section>
 
+      {/* ── Video Showcase Section ── */}
+      <VideoShowcase websiteType="doctor" />
+
       {/* ── Blogs Section ── */}
       {(blogs && blogs.length > 0) && (
         <section className="doc-services-section" style={{ backgroundColor: '#F8FAFC' }}>
@@ -243,7 +247,6 @@ const DoctorPage = () => {
         </section>
       )}
 
-      {/* ── Contact Info Strip ── */}
       {/* <section className="doc-contact-strip">
         <div className="doc-contact-grid">
           <div className="doc-contact-item">

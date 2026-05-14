@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  FaHeart, FaHome, FaUserFriends, FaRegStar, 
-  FaGamepad, FaShieldAlt, FaPhoneAlt, FaMapMarkerAlt, 
-  FaRegClock, FaBirthdayCake, FaSmile 
+import {
+  FaHeart, FaHome, FaUserFriends, FaRegStar,
+  FaGamepad, FaShieldAlt, FaPhoneAlt, FaMapMarkerAlt,
+  FaRegClock, FaBirthdayCake, FaSmile
 } from 'react-icons/fa';
 import { MdDateRange } from 'react-icons/md';
 import { usePlatform } from '../context/PlatformContext';
@@ -34,7 +34,7 @@ const HomePage = () => {
       <section className={styles.heroSection}>
         <FaHeart className={`${styles.floatingIcon} ${styles.heart}`} />
         <FaSmile className={`${styles.floatingIcon} ${styles.smile}`} />
-        
+
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
             Two thoughtfully <br />
@@ -47,10 +47,10 @@ const HomePage = () => {
           </p>
         </div>
         <div className={styles.heroImageWrapper}>
-          <img 
-            src="/images/hero_hands.png" 
-            alt="Caring Hands" 
-            className={styles.heroImage} 
+          <img
+            src="/images/hero_hands.png"
+            alt="Caring Hands"
+            className={styles.heroImage}
           />
         </div>
       </section>
@@ -59,10 +59,10 @@ const HomePage = () => {
       <section className={styles.cardsContainer}>
         {/* Healthcare Card */}
         <div className={styles.card}>
-          <img 
-            src="/images/stethoscope_3d.png" 
-            alt="Healthcare" 
-            className={styles.cardImage} 
+          <img
+            src="/images/stethoscope_3d.png"
+            alt="Healthcare"
+            className={styles.cardImage}
           />
           <div className={styles.cardContent}>
             <span className={`${styles.cardBadge} ${styles.badgeBlue}`}>HEALTHCARE PORTAL</span>
@@ -70,7 +70,7 @@ const HomePage = () => {
             <p className={styles.cardDesc}>
               Expert physiotherapist in Ghaziabad with 13+ years experience.
             </p>
-            
+
             <div className={styles.statsRow}>
               <div className={styles.statItem}>
                 <MdDateRange className={styles.statIcon} />
@@ -95,8 +95,8 @@ const HomePage = () => {
               </div>
             </div>
 
-            <button 
-              className={`${styles.ctaBtn} ${styles.btnBlue}`} 
+            <button
+              className={`${styles.ctaBtn} ${styles.btnBlue}`}
               onClick={() => navigate('/doctor')}
             >
               Book Visit
@@ -106,10 +106,10 @@ const HomePage = () => {
 
         {/* Play Zone Card */}
         <div className={styles.card}>
-          <img 
-            src="/images/playzone_3d.png" 
-            alt="Play Zone" 
-            className={styles.cardImage} 
+          <img
+            src="/images/playzone_3d.png"
+            alt="Play Zone"
+            className={styles.cardImage}
           />
           <div className={styles.cardContent}>
             <span className={`${styles.cardBadge} ${styles.badgePink}`}>LET'S PLAY ZONE</span>
@@ -117,7 +117,7 @@ const HomePage = () => {
             <p className={styles.cardDesc}>
               Premium birthday parties & 30+ fun activities for kids.
             </p>
-            
+
             <div className={styles.statsRow}>
               <div className={styles.statItem}>
                 <FaBirthdayCake className={`${styles.statIcon} ${styles.statIconPink}`} />
@@ -142,8 +142,8 @@ const HomePage = () => {
               </div>
             </div>
 
-            <button 
-              className={`${styles.ctaBtn} ${styles.btnPink}`} 
+            <button
+              className={`${styles.ctaBtn} ${styles.btnPink}`}
               onClick={() => navigate('/play-zone')}
             >
               Explore Zone
@@ -185,26 +185,34 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        
+
         <div className={`${styles.footerContent} ${styles.footerBottom}`}>
           <div className={styles.footerMessage}>
             <div className={styles.heartCircle}>
               <FaHeart />
             </div>
-            <span>Because every moment<br/>deserves care and joy.</span>
+            <span>Because every moment<br />deserves care and joy.</span>
           </div>
+
           <div className={styles.qrSection}>
-            <div className={styles.qrCode}>
-              {/* Placeholder for QR Code, using a simple grid for now */}
-              <div style={{width:'100%', height:'100%', display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'2px'}}>
-                <div style={{background:'#1a1a2e', borderRadius:'2px'}}></div>
-                <div style={{background:'#1a1a2e', borderRadius:'2px'}}></div>
-                <div style={{background:'#1a1a2e', borderRadius:'2px'}}></div>
-                <div style={{background:'#1a1a2e', borderRadius:'2px'}}></div>
-              </div>
-            </div>
-            <span className={styles.qrText}>Scan to<br/>Connect</span>
+            <a
+              href="https://www.google.com/search?q=Physio+Care+-+Physiotherapist+in+Crossings+Republik&oq=Physio+Care+-+Physiotherapist+in+Crossings+Republik&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgcIARAAGIAEMgcIAhAAGIAEMg0IAxAAGIYDGIAEGIoFMg0IBBAAGIYDGIAEGIoFMg0IBRAAGIYDGIAEGIoFMgcIBhAAGO8FMgoIBxAAGIAEGKIEMgcICBAAGO8FMgoICRAAGIAEGKIE0gEHNzcxajBqN6gCCLACAfEFIUA2bLRMpTw&sourceid=chrome&ie=UTF-8#sv=CAwSnAMKBmxjbF9wdhJNCgNwdnESRkNnMHZaeTh4TVdZMU1EVTNiakJrSWlNS0hWQm9lWE5wYnlCRFlYSmxJQzBnVUdoNWMybHZkR2hsY21Gd2FYTjBFQUlZQXcS4AEKA2xxaRLYAUNqTlFhSGx6YVc4Z1EyRnlaU0F0SUZCb2VYTnBiM1JvWlhKaGNHbHpkQ0JwYmlCRGNtOXpjMmx1WjNNZ1VtVndkV0pzYVd0SWpLRFBncFN0Z0lBSVdrOFFBQkFCRUFJWUFCZ0JHQUlZQXhnRUdBVWlNWEJvZVhOcGJ5QmpZWEpsSUhCb2VYTnBiM1JvWlhKaGNHbHpkQ0JwYmlCamNtOXpjMmx1WjNNZ2NtVndkV0pzYVdzcUNBZ0NFQUFRQVJBQ2tnRVBjR2g1YzJsdmRHaGxjbUZ3YVhOMBISCgN0YnMSC2xyZjohM3NJQUU9EjgKAXESM1BoeXNpbyBDYXJlIC0gUGh5c2lvdGhlcmFwaXN0IGluIENyb3NzaW5ncyBSZXB1YmxpaxoSbG9jYWwtcGxhY2Utdmlld2VyGAog59K97wc"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/src/physio-care/assets/qr.png"
+                alt="QR Code"
+                className={styles.qrCode}
+              />
+            </a>
+
+            <span className={styles.qrText}>
+              Click to<br />Connect
+            </span>
           </div>
+
+
         </div>
       </footer>
     </div>

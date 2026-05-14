@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCheckCircle } from 'react-icons/fa';
 import ModernNavbar from '../components/ModernNavbar';
 import PlayZoneFooter from '../components/PlayZoneFooter';
+import VideoShowcase from '../components/VideoShowcase';
 import '../styles/playzone.css';
 import api from '../admin/utils/api';
 
@@ -122,6 +123,9 @@ const PlayZonePage = () => {
           </div>
         </section>
       )}
+
+      {/* ── Video Showcase Section ── */}
+      <VideoShowcase websiteType="playzone" />
 
       <section className="pz-section pz-features">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
