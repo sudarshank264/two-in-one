@@ -20,28 +20,52 @@
 .video-showcase-player {
     position: relative;
     width: 100%;
-    aspect-ratio: 16/9;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     z-index: 2;
     background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .video-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
     border-radius: 20px;
+    border: none;
+    display: block;
+}
+
+.youtube-iframe, .facebook-iframe {
+    aspect-ratio: 16/9;
+}
+
+.instagram-video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.15; /* Forces a safe height that guarantees footer is pushed down */
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: #000;
+}
+
+.instagram-iframe {
+    position: absolute;
+    top: -54px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 280px); /* 54px top, 226px bottom (hides entire footer) */
+    border: none;
+    max-width: none !important;
 }
 
 .video-placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    width: 100%;
+    aspect-ratio: 16/9;
     color: #fff;
     font-size: 1.2rem;
 }

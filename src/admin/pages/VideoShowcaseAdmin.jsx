@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { FiSave, FiTrash2, FiPlayCircle, FiPlus } from 'react-icons/fi';
 
 const VideoShowcaseAdmin = ({ websiteType }) => {
@@ -29,7 +29,7 @@ const VideoShowcaseAdmin = ({ websiteType }) => {
     const fetchShowcase = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(`${API_URL}/type/${websiteType}`);
+            const response = await api.get(`/video-showcase/type/${websiteType}`);
             if (response.data.success && response.data.data) {
                 setShowcase(response.data.data);
                 setFormData({
@@ -62,12 +62,8 @@ const VideoShowcaseAdmin = ({ websiteType }) => {
     };
 
     const getAuthHeaders = () => {
-        const token = localStorage.getItem('token');
-        return {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        };
+        // Handled by api interceptor
+        return {};
     };
 
     const handleSubmit = async (e) => {
@@ -80,12 +76,12 @@ const VideoShowcaseAdmin = ({ websiteType }) => {
 
             if (showcase && showcase._id) {
                 // Update
-                const res = await axios.put(`${API_URL}/${showcase._id}`, dataToSubmit, getAuthHeaders());
+                const res = await api.put(`/video-showcase/${showcase._id}`, dataToSubmit);
                 setShowcase(res.data.data);
                 setSuccess('Video showcase updated successfully!');
             } else {
                 // Create
-                const res = await axios.post(API_URL, dataToSubmit, getAuthHeaders());
+                const res = await api.post('/video-showcase', dataToSubmit);
                 setShowcase(res.data.data);
                 setIsEditing(true);
                 setSuccess('Video showcase created successfully!');
@@ -100,7 +96,7 @@ const VideoShowcaseAdmin = ({ websiteType }) => {
         if (!window.confirm('Are you sure you want to delete this video showcase?')) return;
         
         try {
-            await axios.delete(`${API_URL}/${showcase._id}`, getAuthHeaders());
+            await api.delete(`/video-showcase/${showcase._id}`);
             setShowcase(null);
             setFormData({
                 title: '',
@@ -118,10 +114,40 @@ const VideoShowcaseAdmin = ({ websiteType }) => {
         }
     };
 
-    const extractYouTubeId = (url) => {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-        const match = url.match(regExp);
-        return (match && match[2].length === 11) ? match[2] : null;
+    const getVideoDetails = (url) => {
+        if (!url) return null;
+        
+        // YouTube
+        const ytRegExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const ytMatch = url.match(ytRegExp);
+        if (ytMatch && ytMatch[2].length === 11) {
+            return { 
+                type: 'youtube', 
+                embedUrl: `https://www.youtube.com/embed/${ytMatch[2]}` 
+            };
+        }
+
+        // Instagram
+        if (url.includes('instagram.com')) {
+            const igRegExp = /(?:instagram\.com)\/(?:p|reel|tv)\/([a-zA-Z0-9_-]+)/i;
+            const igMatch = url.match(igRegExp);
+            if (igMatch && igMatch[1]) {
+                return { 
+                    type: 'instagram', 
+                    embedUrl: `https://www.instagram.com/p/${igMatch[1]}/embed/` 
+                };
+            }
+        }
+
+        // Facebook
+        if (url.includes('facebook.com') || url.includes('fb.watch')) {
+            return { 
+                type: 'facebook', 
+                embedUrl: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false&t=0` 
+            };
+        }
+
+        return null;
     };
 
     if (loading) return <div className="admin-loading">Loading...</div>;
@@ -164,26 +190,48 @@ const VideoShowcaseAdmin = ({ websiteType }) => {
                     </div>
 
                     <div className="form-group">
-                        <label>Video URL (YouTube) *</label>
+                        <label>Video URL (YouTube, Instagram, Facebook) *</label>
                         <input 
                             type="text" 
                             name="videoUrl" 
                             value={formData.videoUrl} 
                             onChange={handleInputChange} 
                             required 
-                            placeholder="https://www.youtube.com/watch?v=..."
+                            placeholder="https://www.youtube.com/watch?v=... or Instagram/Facebook URL"
                         />
-                        {formData.videoUrl && extractYouTubeId(formData.videoUrl) && (
+                        {formData.videoUrl && getVideoDetails(formData.videoUrl) && (
                             <div style={{ marginTop: '1rem', borderRadius: '8px', overflow: 'hidden' }}>
-                                <iframe 
-                                    width="100%" 
-                                    height="200" 
-                                    src={`https://www.youtube.com/embed/${extractYouTubeId(formData.videoUrl)}`} 
-                                    title="YouTube video player" 
-                                    frameBorder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowFullScreen
-                                ></iframe>
+                                {getVideoDetails(formData.videoUrl).type === 'instagram' ? (
+                                    <iframe 
+                                        style={{ width: '100%', aspectRatio: '9/16', height: 'auto', border: 'none' }}
+                                        src={getVideoDetails(formData.videoUrl).embedUrl}
+                                        title="Instagram video player" 
+                                        frameBorder="0" 
+                                        scrolling="no"
+                                        allowTransparency="true"
+                                        allow="encrypted-media"
+                                    ></iframe>
+                                ) : getVideoDetails(formData.videoUrl).type === 'facebook' ? (
+                                    <iframe 
+                                        style={{ width: '100%', aspectRatio: '16/9', height: 'auto', border: 'none' }}
+                                        src={getVideoDetails(formData.videoUrl).embedUrl}
+                                        title="Facebook video player" 
+                                        frameBorder="0" 
+                                        scrolling="no"
+                                        allowTransparency="true"
+                                        allow="encrypted-media; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                ) : (
+                                    <iframe 
+                                        style={{ width: '100%', aspectRatio: '16/9', height: 'auto', border: 'none' }}
+                                        src={getVideoDetails(formData.videoUrl).embedUrl}
+                                        title="YouTube video player" 
+                                        frameBorder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowFullScreen
+                                    ></iframe>
+                                )}
                             </div>
                         )}
                     </div>
