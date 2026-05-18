@@ -12,7 +12,8 @@
   padding: 0 40px;
   display: flex;
   flex-direction: column;
-  gap: 140px; /* Massive spacing for a breathable, premium feel */
+  gap: 140px;
+  /* Massive spacing for a breathable, premium feel */
 }
 
 /* --- Shared Typography --- */
@@ -144,7 +145,8 @@
   border-bottom: 1px solid rgba(34, 211, 238, 0.1);
   padding: 40px 0;
   backdrop-filter: blur(20px);
-  margin: 0 -40px; /* Bleeds to the edge of the container */
+  margin: 0 -40px;
+  /* Bleeds to the edge of the container */
 }
 
 .trustGrid {
@@ -160,9 +162,24 @@
   border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.trustItem:last-child { border: none; }
-.trustItem h2 { font-size: 2.2rem; font-weight: 900; color: #22d3ee; margin-bottom: 4px; }
-.trustItem p { color: #64748b; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+.trustItem:last-child {
+  border: none;
+}
+
+.trustItem h2 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #22d3ee;
+  margin-bottom: 4px;
+}
+
+.trustItem p {
+  color: #64748b;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
 
 /* --- 3. Conditions Grid --- */
 .conditionsGrid {
@@ -195,8 +212,17 @@
   margin-bottom: 24px;
 }
 
-.conditionCard h3 { font-size: 1.5rem; color: white; margin-bottom: 12px; }
-.conditionCard p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+.conditionCard h3 {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.conditionCard p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
 
 /* --- 4. Modalities Layout --- */
 .modalityLayout {
@@ -251,13 +277,25 @@
 
 .modalityGlow {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 2px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
   background: linear-gradient(90deg, transparent, #c084fc, transparent);
   opacity: 0.5;
 }
 
-.modalityCard h4 { font-size: 1.1rem; color: white; margin-bottom: 8px; }
-.modalityCard p { color: #64748b; font-size: 0.85rem; line-height: 1.5; }
+.modalityCard h4 {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.modalityCard p {
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
 
 /* --- 5. Team Section --- */
 .teamGrid {
@@ -279,7 +317,7 @@
 .specialistCard:hover {
   transform: translateY(-10px);
   border-color: #38bdf8;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .avatarPlaceholder {
@@ -294,7 +332,9 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.userIcon { color: #64748b; }
+.userIcon {
+  color: #64748b;
+}
 
 .degrees {
   display: block;
@@ -305,8 +345,18 @@
   letter-spacing: 0.1em;
 }
 
-.specialistInfo h4 { font-size: 1.3rem; margin-bottom: 8px; color: white; }
-.specialistInfo p { color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.specialistInfo h4 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.specialistInfo p {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
 
 /* Santosh Plate */
 .architectPlate {
@@ -317,7 +367,7 @@
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 0 20px rgba(192, 132, 252, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(192, 132, 252, 0.05);
 }
 
 .techBadge {
@@ -330,8 +380,18 @@
   margin-bottom: 12px;
 }
 
-.architectPlate h3 { font-size: 1.5rem; color: white; margin-bottom: 4px; }
-.architectPlate p { color: #64748b; font-size: 0.8rem; letter-spacing: 0.1em; font-family: monospace;}
+.architectPlate h3 {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.architectPlate p {
+  color: #64748b;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  font-family: monospace;
+}
 
 /* --- 6. Final CTA --- */
 .ctaContainer {
@@ -342,15 +402,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
 }
 
-.ctaContent h2 { font-size: 3rem; margin-bottom: 16px; font-weight: 900; letter-spacing: -0.02em; }
-.ctaContent p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 30px; }
+.ctaContent h2 {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
 
-.checkList { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.checkList li { display: flex; align-items: center; gap: 12px; color: white; font-weight: 600; }
-.checkIcon { color: #22d3ee; }
+.ctaContent p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.checkList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-weight: 600;
+}
+
+.checkIcon {
+  color: #22d3ee;
+}
 
 .massiveBtn {
   background: white;
@@ -375,13 +461,44 @@
 
 /* --- Responsive Layouts --- */
 @media (max-width: 900px) {
-  .heading { font-size: 3.5rem; }
-  .heroActions { flex-direction: column; }
-  .trustGrid { grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 20px; }
-  .trustItem { border: none; }
-  .conditionsGrid { grid-template-columns: 1fr; }
-  .modalityLayout { grid-template-columns: 1fr; }
-  .teamGrid { grid-template-columns: 1fr; }
-  .ctaContainer { flex-direction: column; text-align: center; gap: 40px; padding: 40px 20px; }
-  .checkList { align-items: center; }
+  .heading {
+    font-size: 3.5rem;
+  }
+
+  .heroActions {
+    flex-direction: column;
+  }
+
+  .trustGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .trustItem {
+    border: none;
+  }
+
+  .conditionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalityLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaContainer {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+
+  .checkList {
+    align-items: center;
+  }
 }
