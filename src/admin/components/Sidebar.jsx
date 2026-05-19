@@ -50,6 +50,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         </li>
         <NavItem path="/admin/doctor/settings" name="Settings" icon={<FiSettings />} />
         <NavItem path="/admin/doctor/video-showcase" name="Video Showcase" icon={<FiVideo />} />
+        <NavItem path="/admin/doctor/videos" name="Videos" icon={<FiVideo />} />
         <NavItem path="/admin/doctor/services" name="Services" icon={<FiActivity />} />
         <NavItem path="/admin/doctor/gallery" name="Gallery" icon={<FiImage />} />
 
@@ -58,6 +59,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         </li>
         <NavItem path="/admin/playzone/settings" name="Settings" icon={<FiSettings />} />
         <NavItem path="/admin/playzone/video-showcase" name="Video Showcase" icon={<FiVideo />} />
+        <NavItem path="/admin/playzone/videos" name="Videos" icon={<FiVideo />} />
         <NavItem path="/admin/playzone/activities" name="Activities" icon={<FiActivity />} />
         <NavItem path="/admin/playzone/services" name="Services" icon={<FiFileText />} />
         <NavItem path="/admin/playzone/gallery" name="Gallery" icon={<FiImage />} />

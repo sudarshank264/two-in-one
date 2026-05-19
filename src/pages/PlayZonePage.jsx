@@ -6,6 +6,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaCheckCircle } from 'react-ico
 import ModernNavbar from '../components/ModernNavbar';
 import PlayZoneFooter from '../components/PlayZoneFooter';
 import VideoShowcase from '../components/VideoShowcase';
+import VideosGallery from '../components/VideosGallery';
 import '../styles/playzone.css';
 import api from '../admin/utils/api';
 
@@ -162,6 +163,9 @@ const PlayZonePage = () => {
           </div>
         </section>
       )}
+
+      {/* ── Videos Gallery Section ── */}
+      <VideosGallery websiteType="playzone" />
 
       <section className="pz-section" style={{ background: 'linear-gradient(to bottom, #fffbf0, #ffe5e5)' }}>
         <motion.div className="pz-contact-container" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>

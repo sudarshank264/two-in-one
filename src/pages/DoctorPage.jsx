@@ -5,6 +5,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaStethoscope, Fa
 import ModernNavbar from '../components/ModernNavbar';
 import DoctorFooter from '../components/DoctorFooter';
 import VideoShowcase from '../components/VideoShowcase';
+import VideosGallery from '../components/VideosGallery';
 import api from '../admin/utils/api';
 import '../styles/doctor.css';
 
@@ -228,6 +229,9 @@ const DoctorPage = () => {
           </div>
         </section>
       )}
+
+      {/* ── Videos Gallery Section ── */}
+      <VideosGallery websiteType="doctor" />
 
       {/* ── Features/Excellence Section ── */}
       {(d.features && d.features.length > 0) && (
